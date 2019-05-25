@@ -1,39 +1,40 @@
-### Yêu cầu
+# Yêu cầu
 
-# Node.js
+### Node.js
 
 Angular yêu cầu Node.js phiên bản 8.x hoặc 10.x. 
 
-    - Để kiểm tra phiên bản của bạn, hãy chạy 
+    - Để kiểm tra phiên bản của bạn, hãy chạy lệnh sau trong cửa sổ terminal / console. 
+
 ``` bash
 node -v 
 ```
-    trong cửa sổ terminal / console. 
 
     - Nếu chưa cài đặt Node.js, truy cập trang nodejs.org để tải và cài đặt.
 
-# npm package manager
+### npm package manager
 
 Các ứng dụng Angular, Angular CLI và Angular đều phụ thuộc vào các tính năng và chức năng được cung cấp bởi các thư viện có sẵn dưới dạng như npm packages. Để tải xuống và cài đặt npm packages, bạn phải có npm package manager.
 
 Sử dụng nhanh bằng giao diện dòng lệnh npm client, được cài đặt mặc định với Node.js.
 
-Để kiểm tra xem bạn đã cài đặt npm client chưa, hãy chạy 
+Để kiểm tra xem bạn đã cài đặt npm client chưa, hãy chạy lệnh sau trong cửa sổ terminal / console.
+
 ``` bash
 npm -v 
-````
-    trong cửa sổ terminal / console.
+```
 
-# Angular CLI
+### Angular CLI
 
 Chúng ta sử dụng Angular CLI để tạo dự án, tạo mã ứng dụng và mã thư viện và thực hiện một loạt các nhiệm vụ phát triển ra như kiểm tra, đóng gói và triển khai. 
 
 Để cài đặt CLI bằng npm, hãy mở cửa sổ terminal / console và nhập lệnh sau:
+
 ``` bash
 npm install -g @angular/cli
 ```
 
-### Sử dụng
+# Sử dụng
 
 ``` bash
 # clone the repo
