@@ -52,7 +52,8 @@ export class LoginComponent implements OnInit {
         this.toastr.success("Đăng nhập thành công")
         this.router.navigate(['exchange'])
       },
-        err => this.toastr.error("Đăng nhập không thành công")
+        err => {
+          this.toastr.error("Đăng nhập không thành công")}
       );
   }
 }

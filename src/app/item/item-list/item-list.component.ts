@@ -39,8 +39,10 @@ export class ItemListComponent implements OnInit {
 
   getData() {
     this.itemService.getByUser().subscribe(data => {
-      console.log(data)
-      this.dataSource = new MatTableDataSource(data.result);
+      if (data.result)
+        this.dataSource = new MatTableDataSource(data.result);
+      else
+        this.dataSource = new MatTableDataSource();
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }, error => {

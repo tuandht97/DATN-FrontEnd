@@ -10,25 +10,15 @@
   <div class="navbar-menu-wrapper d-flex align-items-center">
     <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
       <li class="nav-item">
-        <a role="button" routerLink="/exchange" routerLinkActive="active" class="nav-link btn btn-default">
+        <a role="button" routerLink="/exchange" routerLinkActive="active" class="btn btn-default">
           <i class="mdi mdi-bookmark-plus-outline"></i>Sàn giao dịch</a>
       </li>
-      <!-- <li class="nav-item">
-        <a routerLink="/list" routerLinkActive="active" class="nav-link">
-          <i class="mdi mdi-cash-multiple"></i>Danh sách mã</a>
-      </li> -->
     </ul>
     <ul class="navbar-nav navbar-nav-right">
       <a role="button" class="btn btn-default" *ngIf="!auth.loggedIn" [routerLink]="['/register']"
-        routerLinkActive="router-link-active" style="color: white; text-decoration: none">Đăng kí</a>
+        routerLinkActive="router-link-active">Đăng kí</a>
       <a role="button" class="btn btn-default" *ngIf="!auth.loggedIn" [routerLink]="['/login']"
-        routerLinkActive="router-link-active" style="color: white;text-decoration: none">Đăng nhập</a>
-      <li class="nav-item dropdown" ngbDropdown *ngIf="auth.loggedIn">
-        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" ngbDropdownToggle>
-          <i class="mdi mdi mdi-bell"></i>
-          <span class="count">4</span>
-        </a>
-      </li>
+        routerLinkActive="router-link-active">Đăng nhập</a>
       <li class="nav-item dropdown d-none d-xl-inline-block" ngbDropdown *ngIf="auth.loggedIn">
         <a class="nav-link dropdown-toggle" id="UserDropdown" ngbDropdownToggle>
           <span class="profile-text">{{currentUser}}</span>

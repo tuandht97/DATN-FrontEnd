@@ -19,6 +19,8 @@ export class UserAssetsComponent implements OnInit {
   currentUserRole: string;
   currentUser: string;
 
+  loaded: Promise<boolean>;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -53,6 +55,8 @@ export class UserAssetsComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.balance = data['result']['balance'];
+
+      this.loaded = Promise.resolve(true);
     }, error => {
     });
   }

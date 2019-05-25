@@ -6,7 +6,7 @@
         <form class="forms-sample">
           <div class="=form-row text-center">
             <div class="col-12">
-              <p class="text-danger">Chọn file IDENTITY của bạn (dung lượng file không quá 2KB)</p>
+              <p class="text-danger">Chọn file IDENTITY của bạn (File định dạng .txt, dung lượng không quá 2KB)</p>
               <button id="up" (click)="fileInput.click()"><i class="mdi mdi-cloud-upload"></i> Upload Identity
                 File</button>
               <input type="file" (change)="files($event.target.files)" #fileInput hidden>

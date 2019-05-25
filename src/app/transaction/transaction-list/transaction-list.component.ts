@@ -54,8 +54,10 @@ export class TransactionListComponent implements OnInit {
 
   getDataBuy() {
     this.tranService.getBuy(this.currentUser).subscribe(data => {
-      console.log(data)
-      this.buySource = new MatTableDataSource(data["result"]);
+      if (data["result"])
+        this.buySource = new MatTableDataSource(data["result"]);
+      else
+        this.buySource = new MatTableDataSource();
       this.buySource.paginator = this.paginator;
       this.buySource.sort = this.sort;
     }, error => {
@@ -64,8 +66,10 @@ export class TransactionListComponent implements OnInit {
 
   getDataSell() {
     this.tranService.getSell(this.currentUser).subscribe(data => {
-      console.log(data)
-      this.sellSource = new MatTableDataSource(data["result"]);
+      if (data["result"])
+        this.sellSource = new MatTableDataSource(data["result"]);
+      else
+        this.sellSource = new MatTableDataSource();
       this.sellSource.paginator = this.paginator;
       this.sellSource.sort = this.sort;
     }, error => {

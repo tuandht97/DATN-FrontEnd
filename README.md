@@ -4,13 +4,13 @@
 
 Angular yêu cầu Node.js phiên bản 8.x hoặc 10.x. 
 
-    - Để kiểm tra phiên bản của bạn, hãy chạy lệnh sau trong cửa sổ terminal / console. 
+Nếu chưa cài đặt Node.js, truy cập trang nodejs.org để tải và cài đặt.
+
+Để kiểm tra phiên bản của bạn, hãy chạy lệnh sau trong cửa sổ terminal / console. 
 
 ``` bash
 node -v 
 ```
-
-    - Nếu chưa cài đặt Node.js, truy cập trang nodejs.org để tải và cài đặt.
 
 ### npm package manager
 

@@ -11,12 +11,12 @@ import { ToastrService } from 'ngx-toastr';
 export class UserCoinComponent implements OnInit {
 
   itemsList: Item[] = [
-    { id: 1, name: '500,000 VND', value: 50 },
-    { id: 2, name: '1,000,000 VND', value: 100 },
-    { id: 3, name: '2,000,000 VND', value: 200 },
-    { id: 4, name: '5,000,000 VND', value: 500 },
-    { id: 5, name: '10,000,000 VND', value: 1000 },
-    { id: 6, name: '20,000,000 VND', value: 2000 }
+    { id: 1, name: '500,000 VND', value: 5 },
+    { id: 2, name: '1,000,000 VND', value: 10 },
+    { id: 3, name: '2,000,000 VND', value: 20 },
+    { id: 4, name: '5,000,000 VND', value: 50 },
+    { id: 5, name: '10,000,000 VND', value: 100 },
+    { id: 6, name: '20,000,000 VND', value: 200 }
   ];
 
   radioSel: Item;
@@ -49,7 +49,7 @@ export class UserCoinComponent implements OnInit {
       .subscribe(
         result => {
           this.toastr.success("Giao dịch thành công")
-        //    this.router.navigate(['user'])
+        //  this.router.navigate(['user'])
         },
         err => {
           this.toastr.error("Giao dịch không thành công")

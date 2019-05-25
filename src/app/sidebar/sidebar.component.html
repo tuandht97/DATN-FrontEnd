@@ -35,13 +35,15 @@
       </a>
     </li>
     <li class="nav-item" *ngIf="isUser || isSeller">
-      <a class="nav-link" routerLink="/item" routerLinkActive="active">
+      <a class="nav-link" routerLink="/item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+        true}">
         <i class="menu-icon mdi mdi-gavel"></i>
         <span class="menu-title">Mã đang bán</span>
       </a>
     </li>
     <li class="nav-item" *ngIf="isSeller || isAdmin">
-      <a class="nav-link" routerLink="/estate" routerLinkActive="active">
+      <a class="nav-link" routerLink="/estate" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+        true}">
         <i class="menu-icon mdi mdi-city"></i>
         <span class="menu-title">Bất động sản</span>
       </a>

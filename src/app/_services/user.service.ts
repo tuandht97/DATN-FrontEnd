@@ -25,11 +25,13 @@ export class UserService {
     return this.http.post(`/api/auth/register`, user);
   }
 
-  getAsset(username: string) {
-    if (this.currentRole == Org.Seller)
+  getAsset(username: string): Observable<any> {
+    if (this.currentRole == Org.Seller) {
       return this.http.post(`/api/realestate/get-shareholder`, { username });
-    if (this.currentRole == Org.User)
+    }
+    if (this.currentRole == Org.User) {
       return this.http.post(`/api/trader/get-shareholder`, { username });
+    }
   }
 
   buyCoin(amount: number) {

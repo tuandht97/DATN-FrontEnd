@@ -35,7 +35,7 @@ export class EstateService {
     return this.http.put(`/api/realestate/edit-real-estate`, formData);
   }
 
-  async getById(id: string): Promise<Observable<any>> {
+  async getById(id: string) {
     console.log(this.currentRole)
     if (this.currentRole == Org.Admin)
       return this.http.get(`/api/regulator/get-real-estate/` + id);

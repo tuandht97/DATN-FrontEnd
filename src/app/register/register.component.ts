@@ -46,14 +46,12 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    console.log(this.registerForm.value)
-
     this.userService.register(this.registerForm.value)
       .pipe(first())
       .subscribe(
         result => {
           if (result["error"]) {
-            this.toastr.error("Đăng kí không thành công")
+            this.toastr.error("Đăng kí không thành công: " + result["error"])
           } else {
             this.writeContents(JSON.stringify(result), this.registerForm.value.username, 'text/plain');
             this.toastr.success("Đăng kí thành công");
@@ -69,7 +67,6 @@ export class RegisterComponent implements OnInit {
   get f() { return this.registerForm.controls; }
 
   writeContents(content, fileName, contentType) {
-    console.log(content)
     var a = document.createElement('a');
     var file = new Blob([content], { type: contentType });
     a.href = URL.createObjectURL(file);

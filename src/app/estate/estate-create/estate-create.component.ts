@@ -108,13 +108,13 @@ export class EstateCreateComponent implements OnInit {
   get f() { return this.estateForm.controls; }
 
   onKey(value: number) {
-    this.pay = (value / 10000) / this.estateForm.value.amount;
+    this.pay = (value / 100000) / this.estateForm.value.amount;
     if (this.pay < 1)
       this.pay = 1;
   }
 
   onAmount(value: number) {
-    this.pay = (this.estateForm.value.sumPrice / 10000) / value;
+    this.pay = (this.estateForm.value.sumPrice / 100000) / value;
     if (this.pay < 1)
       this.pay = 1;
   }
