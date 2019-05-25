@@ -46,6 +46,7 @@ export class UserAssetsComponent implements OnInit {
 
   getData() {
     this.userService.getAsset(this.currentUser).subscribe(data => {
+      console.log(data)
       const asset = [];
       for (let code in data["result"]["tritList"]) {
         let a = { code: code, amount: data["result"]["tritList"][code] };

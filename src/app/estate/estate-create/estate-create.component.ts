@@ -19,6 +19,7 @@ export class EstateCreateComponent implements OnInit {
   submitted = false;
 
   pay: number;
+  sum: number;
 
   keys = Object.keys;
   typeEstate = TypeEstate;

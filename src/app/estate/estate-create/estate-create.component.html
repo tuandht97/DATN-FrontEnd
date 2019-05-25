@@ -2,7 +2,8 @@
   <div class="col-12 grid-margin">
     <div class="card">
       <div class="card-body">
-        <h4>Tạo bất động sản</h4>
+        <h4 class="font-weight-bold">Tạo bất động sản</h4>
+        <br>
         <form class="form-sample" (ngSubmit)="submit()" [formGroup]="estateForm">
           <h5 class="bg-primary text-white rounded">Thông tin cơ bản</h5>
           <div class="row">
@@ -128,16 +129,15 @@
             </div>
           </div>
           <h5 class="bg-primary text-white rounded">Hình ảnh</h5>
-          <div class="row">
+          <div class="row" id="gallery">
             <div *ngFor="let index of urls; index as i">
               <div id="contentInside">
-                <div class="topright" (click)="removeImage(i)"><i class="fa fa-times" style="color:red"></i></div>
-                <img [src]="urls[i]" width="100%" height="auto"><br />
+                <div class="topright" (click)="removeImage(i)"><i class="fa fa-times close"></i></div>
+                <img [src]="urls[i]" id="anh">
               </div>
             </div>
             <div id="contentInside">
-              <img src="assets/images/picture.png" style="display: block;
-              margin: auto auto;" (click)="fileInput.click()">
+              <img src="assets/images/add-image.png" (click)="fileInput.click()" width="100%" height="auto">
               <input type='file' accept="image/*" (change)="onSelectFile($event)" #fileInput multiple hidden>
             </div>
           </div>

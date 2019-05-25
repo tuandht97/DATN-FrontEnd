@@ -21,7 +21,7 @@
         routerLinkActive="router-link-active">Đăng nhập</a>
       <li class="nav-item dropdown d-none d-xl-inline-block" ngbDropdown *ngIf="auth.loggedIn">
         <a class="nav-link dropdown-toggle" id="UserDropdown" ngbDropdownToggle>
-          <span class="profile-text">{{currentUser}}</span>
+          <span class="profile-text" style="font-size: small">{{currentUser}}</span>
           <img class="img-xs rounded-circle" src="assets/images/faces/face1.jpg" alt="Profile image">
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" ngbDropdownMenu aria-labelledby="UserDropdown">

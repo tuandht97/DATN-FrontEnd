@@ -1,19 +1,50 @@
 h5 {
-    padding: 10px;
+  padding: 10px;
 }
 
-#contentInside{
-    position: relative;
-    width:200px;
-    height:140px;
-    margin:7px;
-    border:1px solid black;
-    display:inline-flex;
+#contentInside {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 20px 10px;
+  border: 1px solid black;
+  //   display: inline-flex;
+  //   display: inline-block;
+  overflow: hidden;
 }
 
 .topright {
-    position: absolute;
-    top: 8px;
-    right: 16px;
-    font-size: 18px;
-  }
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 18px;
+}
+
+.close {
+  font-size: 30px;
+  color: red;
+}
+
+#anh {
+  object-fit: cover;
+  //   display: block;
+  margin: auto;
+  width: 150px;
+  height: 150px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.gallery {
+  width: 70%;
+  background: #eee;
+  margin: auto;
+  position: relative;
+  text-align: center;
+}
+
+label {
+  font-size: small;
+}

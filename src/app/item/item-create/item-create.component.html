@@ -2,7 +2,8 @@
   <div class="col-12 grid-margin">
     <div class="card">
       <div class="card-body">
-        <h4>Bán mã chứng chỉ quỹ</h4>
+        <h4 class="font-weight-bold">Bán mã chứng chỉ quỹ</h4>
+        <br>
         <form class="form-sample" (ngSubmit)="submit()" [formGroup]="itemForm">
           <div class="row">
             <div class="col-md-5">
@@ -12,8 +13,7 @@
                   <input type="text" placeholder="Chọn mã" aria-label="Number" [formControl]="myControl"
                     [matAutocomplete]="auto" class="form-control" formControlName="tritId"
                     [ngClass]="{ 'is-invalid': submitted && f.tritId.errors }" #code
-                    (keyup.enter)="updateCode(code.value)"
-                    (blur)="updateCode(code.value)">
+                    (keyup.enter)="updateCode(code.value)" (blur)="updateCode(code.value)">
                   <mat-autocomplete #auto="matAutocomplete">
                     <mat-option (onSelectionChange)="updateForm($event)" *ngFor="let option of filteredOptions | async"
                       [value]="option">
@@ -34,7 +34,8 @@
                   bộ</a>
                 <div>
                   <input type="number" formControlName="amount" class="form-control"
-                    [ngClass]="{ 'is-invalid': submitted && f.amount.errors }" placeholder="Số lượng mã muốn tạo" value="{{amount}}">
+                    [ngClass]="{ 'is-invalid': submitted && f.amount.errors }" placeholder="Số lượng mã muốn tạo"
+                    value="{{amount}}">
                   <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
                     <div *ngIf="f.amount.errors.required">Bạn chưa nhập số lượng mã
                     </div>
