@@ -1,0 +1,110 @@
+<div class="row">
+  <div class="col-12 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <ngb-tabset class="tab-solid tab-solid-primary">
+          <ngb-tab>
+            <ng-template ngbTabTitle>Lịch sử bán
+            </ng-template>
+            <ng-template ngbTabContent>
+              <div class="example-header">
+                <mat-form-field>
+                  <input matInput (keyup)="applyFilterSell($event.target.value)" placeholder="Tìm kiếm" value="{{filter}}">
+                </mat-form-field>
+              </div>
+
+              <div class="example-container mat-elevation-z8">
+
+                <mat-table [dataSource]="sellSource" matSort>
+                  <!-- Progress Column -->
+                  <ng-container matColumnDef="tritId">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Mã </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> <a [routerLink]="['/stock', row.tritId]"
+                        routerLinkActive="router-link-active">{{row.tritId}}</a> </mat-cell>
+                  </ng-container>
+
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="tritPrice">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Giá bán </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.tritPrice}} coin</mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="amount">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Số lượng </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.amount}} </mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="buyer">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Người mua </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.buyer}} </mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="time">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Thời gian </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.time | date: 'dd/MM/yyyy hh:mm a'}} </mat-cell>
+                  </ng-container>
+
+                  <mat-header-row *matHeaderRowDef="sellColumns"></mat-header-row>
+                  <mat-row *matRowDef="let row; columns: sellColumns;">
+                  </mat-row>
+                </mat-table>
+
+                <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+              </div>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab>
+            <ng-template ngbTabTitle>Lịch sử mua
+            </ng-template>
+            <ng-template ngbTabContent>
+              <div class="example-header">
+                <mat-form-field>
+                  <input matInput (keyup)="applyFilterBuy($event.target.value)" placeholder="Tìm kiếm" value="{{filter2}}">
+                </mat-form-field>
+              </div>
+
+              <div class="example-container mat-elevation-z8">
+
+                <mat-table [dataSource]="buySource" matSort>
+                  <!-- Progress Column -->
+                  <ng-container matColumnDef="tritId">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Mã </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> <a [routerLink]="['/stock', row.tritId]"
+                        routerLinkActive="router-link-active">{{row.tritId}}</a> </mat-cell>
+                  </ng-container>
+
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="tritPrice">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Giá bán </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.tritPrice}} coin</mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="amount">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Số lượng </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.amount}} </mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="seller">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Người bán </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.seller}} </mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="time">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Thời gian </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.time | date: 'dd/MM/yyyy hh:mm a'}} </mat-cell>
+                  </ng-container>
+
+                  <mat-header-row *matHeaderRowDef="buyColumns"></mat-header-row>
+                  <mat-row *matRowDef="let row; columns: buyColumns;">
+                  </mat-row>
+                </mat-table>
+
+                <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+              </div>
+            </ng-template>
+          </ngb-tab>
+        </ngb-tabset>
+      </div>
+    </div>
+  </div>
+</div>

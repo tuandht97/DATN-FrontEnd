@@ -1,0 +1,8 @@
+button a {
+    text-decoration: none;
+    color:white;
+}
+
+mat-header-cell:nth-child(1), mat-cell:nth-child(1) {
+    flex: 0 0 30%;
+}

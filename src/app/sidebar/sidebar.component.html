@@ -1,0 +1,74 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+    <li class="nav-item nav-profile">
+      <div class="nav-link">
+        <div class="user-wrapper">
+          <div class="profile-image">
+            <img src="assets/images/faces/face1.jpg" alt="profile image">
+          </div>
+          <div class="text-wrapper">
+            <p class="profile-name">{{currentUser}}</p>
+            <div>
+              <small class="designation text-muted">{{role}}</small>
+              <span class="status-indicator online"></span>
+            </div>
+          </div>
+        </div>
+        <a class="btn btn-success btn-block" *ngIf="isUser" [routerLink]="['/exchange']"
+          routerLinkActive="router-link-active">Mua mã
+          <i class="mdi mdi-plus"></i></a>
+        <a class="btn btn-warning btn-block" *ngIf="isUser" [routerLink]="['/user/coin']"
+          routerLinkActive="router-link-active">Mua coin
+          <i class="mdi mdi-plus"></i></a>
+        <a class="btn btn-success btn-block" *ngIf="isAdmin" [routerLink]="['/estate']"
+          routerLinkActive="router-link-active">Tạo mã
+          <i class="mdi mdi-plus"></i></a>
+        <a class="btn btn-success btn-block" *ngIf="isSeller" [routerLink]="['/estate/create']"
+          routerLinkActive="router-link-active">Tạo bất động sản
+          <i class="mdi mdi-plus"></i></a>
+      </div>
+    </li>
+    <li class="nav-item" *ngIf="isUser || isSeller">
+      <a class="nav-link" routerLink="/item/create" routerLinkActive="active">
+        <i class="menu-icon mdi mdi-credit-card-multiple"></i>
+        <span class="menu-title">Bán mã</span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="isUser || isSeller">
+      <a class="nav-link" routerLink="/item" routerLinkActive="active">
+        <i class="menu-icon mdi mdi-gavel"></i>
+        <span class="menu-title">Mã đang bán</span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="isSeller || isAdmin">
+      <a class="nav-link" routerLink="/estate" routerLinkActive="active">
+        <i class="menu-icon mdi mdi-city"></i>
+        <span class="menu-title">Bất động sản</span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="isAdmin">
+      <a class="nav-link" routerLink="/user/list" routerLinkActive="active">
+        <i class="menu-icon mdi mdi-account-multiple"></i>
+        <span class="menu-title">Danh sách người dùng</span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="isAdmin">
+      <a class="nav-link" routerLink="/stock" routerLinkActive="active">
+        <i class="menu-icon mdi mdi-database"></i>
+        <span class="menu-title">Danh sách mã</span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="isUser || isSeller">
+      <a class="nav-link" routerLink="/transaction" routerLinkActive="active">
+        <i class="menu-icon mdi mdi-library-books"></i>
+        <span class="menu-title">Lịch sử giao dịch</span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="isUser || isSeller">
+      <a class="nav-link" routerLink="/user" routerLinkActive="active">
+        <i class="menu-icon mdi mdi-home"></i>
+        <span class="menu-title">Tài sản</span>
+      </a>
+    </li>
+  </ul>
+</nav>

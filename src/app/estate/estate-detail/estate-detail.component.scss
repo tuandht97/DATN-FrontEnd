@@ -1,0 +1,16 @@
+img{
+    display: block;
+    margin: auto;
+    top:0;
+    bottom:0;
+    max-width: 100%; 
+    height: auto;
+    max-height: 400px;
+}
+
+#frame{
+    background-color: black; 
+    display: flex; 
+    align-items: center; 
+    height: 400px;
+}

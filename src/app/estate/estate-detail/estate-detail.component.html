@@ -1,0 +1,109 @@
+<div class="row">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <!-- <ngb-carousel>
+                            <ng-template ngbSlide>
+                                <img src="https://lorempixel.com/900/500?r=1" alt="Random first slide" height="auto"
+                                    width="100%">
+                            </ng-template>
+                            <ng-template ngbSlide *ngFor="let url of urls">
+                                <img src="{{url}}" alt="Random second slide" height="auto" width="100%">
+                            </ng-template>
+                        </ngb-carousel> -->
+                        <!-- <ng-container *ngIf="urls; else loading"> -->
+                        <ng-container *ngIf="urls">
+                            <ng-container *ngFor="let u of url$ | async as urls">
+                            </ng-container>
+                        </ng-container>
+                        <ngb-carousel *ngIf="urls.length > 0" id="frame">
+                            <ng-template ngbSlide *ngFor="let url of urls; let i = index" id="{{i}}">
+                                <img [src]='url' class="img-responsive">
+                            </ng-template>
+                            <!-- <ng-template #loading>
+                                <img src="assets/images/noimage.png">
+                            </ng-template> -->
+                        </ngb-carousel>
+                        <img src="assets/images/noimage.png" *ngIf="urls.length == 0">
+                    </div>
+                    <div class="col-md-4">
+                        <h3 class="font-weight-bold">{{estate?.name}}</h3>
+                        <div class="bg-light row p-2 mb-2">
+                            <div class="col-12 d-flex align-items-center">
+                                <span class="text-info font-weight-bold">Mã: {{estate?.id}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <p>Giá bán mỗi mã</p>
+                            </div>
+                            <div class="col-6">
+                                <p class="mb-2">
+                                    {{estate?.price}} coin
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <p>Số lượng</p>
+                            </div>
+                            <div class="col-6">
+                                <p class="mb-2">
+                                    {{estate?.amount}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <p>Địa chỉ</p>
+                            </div>
+                            <div class="col-6">
+                                <p class="mb-2">
+                                    {{estate?.address}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <p>Diện tích</p>
+                            </div>
+                            <div class="col-6">
+                                <p class="mb-2">
+                                    {{estate?.squareMeter}}
+                                </p>
+                            </div>
+                        </div>
+                        <form class="forms-sample" (ngSubmit)="submit()" *ngIf="isAdmin">
+                            <div class="form-row text-center">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary btn-lg" [disabled]="submited">Xác
+                                        nhận</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="form-row text-center" *ngIf="isSeller">
+                            <div class="col-12">
+                                <button class="btn btn-primary btn-rounded btn-fw text-white" *ngIf="isSeller"
+                                    [disabled]="estate?.actice == 'Publish'" (click)="goUpdate(estate?.id)">Cập nhật
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="font-weight-bold">Thông tin về bất động sản</h4>
+                <div style="text-align: justify;" [innerHtml]="estate?.description">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

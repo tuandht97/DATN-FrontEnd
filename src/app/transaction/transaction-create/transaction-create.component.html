@@ -1,0 +1,65 @@
+<h1 mat-dialog-title>Mua chứng chỉ quỹ</h1>
+<div mat-dialog-content>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <h4 class="font-weight-bold" style="color:#f6a700">{{balance}} coin đang có</h4>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-lg-5">
+          <h4 class="font-weight-bold text-center">{{item?.tritId}}</h4>
+          <h5 class="font-weight-normal text-center">{{item?.seller}}</h5>
+        </div>
+        <div class="col-lg-7">
+          <div class="row">
+            <div class="col-lg-4">
+              <span>%(24h)</span>
+              <h5 style="color: green">0.56</h5>
+            </div>
+            <div class="col-lg-4">
+              <span>Giá bán</span>
+              <p>{{item?.price}}</p>
+            </div>
+            <div class="col-lg-4">
+              <span>Số lượng</span>
+              <p>{{item?.amount}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form class="form-sample" (ngSubmit)="submit()" [formGroup]="tranForm">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="form-group">
+              <label>Số lượng muốn mua</label>
+              <div>
+                <input type="number" formControlName="amount" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.amount.errors }" placeholder="Số lượng mã muốn mua"
+                  #box (keyup)="onKey(box.value)">
+                <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+                  <div *ngIf="f.amount.errors.required">Bạn chưa nhập số lượng mã
+                  </div>
+                  <div *ngIf="f.amount.errors.min">Số lượng phải lớn hơn 0</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Thành tiền (Coin)</label>
+              <div>
+                <h5>{{pay}}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row text-center">
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-lg mr-2">Mua</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

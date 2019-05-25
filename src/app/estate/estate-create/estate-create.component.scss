@@ -1,0 +1,19 @@
+h5 {
+    padding: 10px;
+}
+
+#contentInside{
+    position: relative;
+    width:200px;
+    height:140px;
+    margin:7px;
+    border:1px solid black;
+    display:inline-flex;
+}
+
+.topright {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 18px;
+  }

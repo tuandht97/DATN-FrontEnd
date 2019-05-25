@@ -1,0 +1,170 @@
+<div class="row">
+  <div class="col-12 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <h4>Tạo bất động sản</h4>
+        <form class="form-sample" (ngSubmit)="submit()" [formGroup]="estateForm">
+          <h5 class="bg-primary text-white rounded">Thông tin cơ bản</h5>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Tên bất đông sản</label>
+                <div>
+                  <input type="text" formControlName="name" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }" maxlength="100" />
+                  <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                    <div *ngIf="f.name.errors.required">Bạn chưa nhập tên bất động sản
+                    </div>
+                    <div *ngIf="f.name.errors.maxLength">Tên bất động sản dài không quá 100 lí tự
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Mã</label>
+                <div>
+                  <input type="text" formControlName="code" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.code.errors }" placeholder="Mã muốn tạo" min="10" />
+                  <div *ngIf="submitted && f.code.errors" class="invalid-feedback">
+                    <div *ngIf="f.code.errors.required">Bạn chưa mã
+                    </div>
+                    <div *ngIf="f.code.errors.maxLength">Mã dài không quá 10 kí tự</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="col-md-6">
+              <div class="form-group">
+                <label>Loại </label>
+                <div>
+                  <select class="form-control" formControlName="typeEstate" placeholder="Favorite food"
+                    [ngClass]="{ 'is-invalid': submitted && f.typeEstate.errors }">
+                    <option *ngFor="let ty of keys(typeEstate)" [ngValue]="ty">{{typeEstate[ty]}}</option>
+                  </select>
+                  <div *ngIf="submitted && f.typeEstate.errors" class="invalid-feedback">
+                    <div *ngIf="f.typeEstate.errors.required">Bạn chưa nhập số lượng mã
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Giá bán (VND)</label>
+                <div>
+                  <input type="number" formControlName="sumPrice" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.sumPrice.errors }" placeholder="Giá bán cho mong muốn"
+                    #box (keyup)="onKey(box.value)" min="10000" />
+                  <div *ngIf="submitted && f.sumPrice.errors" class="invalid-feedback">
+                    <div *ngIf="f.sumPrice.errors.required">Bạn chưa nhập giá bán
+                    </div>
+                    <div *ngIf="f.sumPrice.errors.min">Giá bán phải là số lớn hơn 10000 VND</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Số lượng mã</label>
+                <div>
+                  <input type="number" formControlName="amount" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.amount.errors }" placeholder="Số lượng mã muốn tạo"
+                    #amount (keyup)="onAmount(amount.value)" min="1" />
+                  <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+                    <div *ngIf="f.amount.errors.required">Bạn chưa nhập số lượng mã
+                    </div>
+                    <div *ngIf="f.amount.errors.min">Số lượng phải là số lớn hơn 0</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Giá bán cho mỗi mã</label>
+                <div>
+                  <span class="text-warning" *ngIf="pay>0">{{pay | number:'1.0-0'}} coin</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Diện tích (m<sup>2</sup>)</label>
+                <div>
+                  <input type="number" formControlName="squareMeter" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.squareMeter.errors }" placeholder="Diện tích bất động sản"
+                    min="1" />
+                  <div *ngIf="submitted && f.squareMeter.errors" class="invalid-feedback">
+                    <div *ngIf="f.squareMeter.errors.required">Bạn chưa nhập diện tích bất động sản
+                    </div>
+                    <div *ngIf="f.squareMeter.errors.min">Diện tích phải là số lớn hơn 0</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label>Địa chỉ bất động sản</label>
+                <div>
+                  <input type="text" formControlName="address" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.address.errors }" maxlength="200" />
+                  <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                    <div *ngIf="f.address.errors.required">Bạn chưa địa chỉ bất động sản
+                    </div>
+                    <div *ngIf="f.address.errors.maxLength">Địa chỉ bất động sản dài không quá 200 kí tự
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h5 class="bg-primary text-white rounded">Hình ảnh</h5>
+          <div class="row">
+            <div *ngFor="let index of urls; index as i">
+              <div id="contentInside">
+                <div class="topright" (click)="removeImage(i)"><i class="fa fa-times" style="color:red"></i></div>
+                <img [src]="urls[i]" width="100%" height="auto"><br />
+              </div>
+            </div>
+            <div id="contentInside">
+              <img src="assets/images/picture.png" style="display: block;
+              margin: auto auto;" (click)="fileInput.click()">
+              <input type='file' accept="image/*" (change)="onSelectFile($event)" #fileInput multiple hidden>
+            </div>
+          </div>
+          <h5 class="bg-primary text-white rounded">Thông tin mô tả</h5>
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <h4>Mô tả</h4>
+                <div>
+                  <app-ngx-editor [placeholder]="'Nhập mô tả ...'" height="100px" formControlName="description"
+                    [ngClass]="{ 'is-invalid': submitted && f.description.errors }">
+                  </app-ngx-editor>
+                  <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                    <div *ngIf="f.description.errors.required">Bạn chưa mô tả
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row text-center">
+            <div class="col-12">
+              <button type="submit" class="btn btn-success btn-lg mr-2">Tạo bất động sản</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

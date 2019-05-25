@@ -1,0 +1,70 @@
+<h4>Mua coin</h4>
+<div class="row">
+  <div class="col-6 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <table>
+          <thead>
+            <th class="text-danger">Giá</th>
+            <th class="text-danger">Thêm coin</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of itemsList">
+              <td>
+                <label class="container">{{item.name}}
+                  <input type="radio" [(ngModel)]="radioSelected" value="{{item.id}}" (change)="onItemChange(item)" />
+                  <span class="checkmark" style="vertical-align: bottom"></span>
+                </label>
+              </td>
+              <td>Coin x {{item.value}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-6 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <table>
+          <thead>
+            <th>Xem lại giao dịch</th>
+            <th></th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                Sản phẩm được chọn
+              </td>
+              <td style="text-align: right">
+                <i class="fa fa-database" style="color: #f6a700"></i> {{valueSel}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Giá
+              </td>
+              <td style="text-align: right">
+                {{nameSel}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Phương thức thanh toán
+              </td>
+              <td style="text-align: right">
+                ATM - iBanking
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <div class="form-row text-center">
+          <div class="col-12">
+            <button class="btn btn-primary btn-lg" (click)="buy()">Xử lý thanh toán</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-12 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <h4>Danh sách mã</h4>
+        <div class="example-header">
+          <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Tìm kiếm" value="{{filter}}">
+          </mat-form-field>
+        </div>
+
+        <div class="example-container mat-elevation-z8">
+
+          <mat-table [dataSource]="dataSource" matSort>
+            <!-- Progress Column -->
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Mã </mat-header-cell>
+              <mat-cell *matCellDef="let row"> <a [routerLink]="['/stock', row.id]"
+                  routerLinkActive="router-link-active">{{row.id}}</a> </mat-cell>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="price">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Giá bán </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.price}} coin</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="amount">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Số lượng </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.amount}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="ownerId">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Người sở hữu</mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.ownerId}} </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            </mat-row>
+          </mat-table>
+
+          <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
