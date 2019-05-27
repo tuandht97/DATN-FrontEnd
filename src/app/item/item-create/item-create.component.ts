@@ -48,13 +48,15 @@ export class ItemCreateComponent implements OnInit {
   ) {
     this.currentUser = this.auth.getCurrentUser;
     this.userService.getAsset(this.currentUser).subscribe(data => {
-      console.log(data)
-      for (let code in data["result"]["tritList"]) {
-        let a = { code: code, amount: data["result"]["tritList"][code] };
-        this.assets.push(a);
+      if (data["result"]) {
+        for (let code in data["result"]["tritList"]) {
+          let a = { code: code, amount: data["result"]["tritList"][code] };
+          this.assets.push(a);
+        }
+        this.code = data["result"]["publishedTrits"];
+      }else{
+        this.toastr.error("Bạn chưa có mã nào trong tài sản")
       }
-      this.code = data["result"]["publishedTrits"];
-      console.log(this.code)
     }, error => {
     });
   }
@@ -99,7 +101,7 @@ export class ItemCreateComponent implements OnInit {
       .subscribe(
         result => {
           this.toastr.success("Giao bán mã thành công")
-    //        this.router.navigate(['item'])
+          //        this.router.navigate(['item'])
         },
         err => {
           this.toastr.error("Giao bán mã không thành công")

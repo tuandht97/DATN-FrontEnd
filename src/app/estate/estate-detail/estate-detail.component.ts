@@ -40,15 +40,19 @@ export class EstateDetailComponent implements OnInit {
       map(params => params.get('id')),
       switchMap(id => this.estateService.getById(id))
     ).subscribe(estate => {
-      this.estate = estate["result"];
       console.log(estate)
-      this.estate.images.forEach(img => {
-        let url = 'http://localhost:3000/uploads/' + img
-        this.urls.push(url);
-      });
-      console.log(this.urls)
-      if (this.estate.actice == 'Publish')
-        this.submited = true;
+      if (estate["result"]) {
+        this.estate = estate["result"];
+        this.estate.images.forEach(img => {
+          let url = 'http://localhost:3000/uploads/' + img
+          this.urls.push(url);
+        });
+        if (this.estate.actice == 'Publish')
+          this.submited = true;
+      } else {
+        this.toastr.error("Bất động sản không tồn tại");
+        this.router.navigate(['estate']);
+      }
     });
   }
 
@@ -57,8 +61,8 @@ export class EstateDetailComponent implements OnInit {
       .pipe(first())
       .subscribe(
         result => {
-          this.toastr.success("Xác nhận thành công"),
-            this.router.navigate(['estate'])
+          this.toastr.success("Xác nhận thành công");
+          this.router.navigate(['stock'])
         },
         err => {
           this.toastr.error("Xác nhận và tạo mã không thành công")

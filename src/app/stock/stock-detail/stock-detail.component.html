@@ -1,65 +1,101 @@
 <div class="row">
   <div class="col-12 grid-margin">
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-8">
-            <ngb-carousel>
-              <ng-template ngbSlide>
-                <img src="https://lorempixel.com/900/500?r=1" alt="Random first slide" height="auto" width="100%">
-              </ng-template>
-              <ng-template ngbSlide>
-                <img src="https://lorempixel.com/900/500?r=2" alt="Random second slide" height="auto" width="100%">
-              </ng-template>
-              <ng-template ngbSlide>
-                <img src="https://lorempixel.com/900/500?r=3" alt="Random third slide" height="auto" width="100%">
-              </ng-template>
-            </ngb-carousel>
+      <div class="card">
+          <div class="card-body">
+              <div class="row">
+                  <div class="col-md-8">
+                      <!-- <ngb-carousel>
+                          <ng-template ngbSlide>
+                              <img src="https://lorempixel.com/900/500?r=1" alt="Random first slide" height="auto"
+                                  width="100%">
+                          </ng-template>
+                          <ng-template ngbSlide *ngFor="let url of urls">
+                              <img src="{{url}}" alt="Random second slide" height="auto" width="100%">
+                          </ng-template>
+                      </ngb-carousel> -->
+                      <!-- <ng-container *ngIf="urls; else loading"> -->
+                      <ng-container *ngIf="urls">
+                          <ng-container *ngFor="let u of url$ | async as urls">
+                          </ng-container>
+                      </ng-container>
+                      <ngb-carousel *ngIf="urls.length > 0" id="frame">
+                          <ng-template ngbSlide *ngFor="let url of urls; let i = index" id="{{i}}">
+                              <img [src]='url' class="img-responsive">
+                          </ng-template>
+                          <!-- <ng-template #loading>
+                              <img src="assets/images/noimage.png">
+                          </ng-template> -->
+                      </ngb-carousel>
+                      <img src="assets/images/noimage.png" *ngIf="urls.length == 0">
+                  </div>
+                  <div class="col-md-4">
+                      <h3 class="font-weight-bold">{{estate?.name}}</h3>
+                      <div class="bg-light row p-2 mb-2">
+                          <div class="col-12 d-flex align-items-center">
+                              <span class="text-info font-weight-bold">Mã: {{estate?.id}}</span>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-6">
+                              <p>Giá bán mỗi mã</p>
+                          </div>
+                          <div class="col-6">
+                              <p class="mb-2">
+                                  {{estate?.price}} coin
+                              </p>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-6">
+                              <p>Số lượng</p>
+                          </div>
+                          <div class="col-6">
+                              <p class="mb-2">
+                                  {{estate?.amount}}
+                              </p>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-6">
+                              <p>Địa chỉ</p>
+                          </div>
+                          <div class="col-6">
+                              <p class="mb-2">
+                                  {{estate?.address}}
+                              </p>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-6">
+                              <p>Diện tích</p>
+                          </div>
+                          <div class="col-6">
+                              <p class="mb-2">
+                                  {{estate?.squareMeter}}
+                              </p>
+                          </div>
+                      </div>
+                      <div class="form-row text-center" *ngIf="isUser">
+                          <div class="col-12">
+                              <button class="btn btn-primary btn-rounded btn-fw text-white"
+                                  [disabled]="estate?.actice == 'Publish'" (click)="boBuy()">Mua
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
           </div>
-          <div class="col-md-4">
-            <h3 class="font-weight-bold">{{stock.code}}</h3>
-            <div class="bg-light row p-2 mb-2">
-              <div class="col-8 d-flex align-items-center">
-                <span class="text-primary display-4">{{stock.price}} coin</span>
-              </div>
-              <div class="col-4 d-flex align-items-center">
-                <h5 style="color: green">0.56<i class="mdi mdi-arrow-up"></i></h5>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <p>Số lượng</p>
-              </div>
-              <div class="col-6">
-                <p class="mb-2">
-                  {{stock.amount}}
-                </p>
-              </div>
-            </div>
-            <div class="row text-center d-flex align-items-center">
-              <div class="col-12">
-                <a class="btn btn-primary btn-lg mr-2" [routerLink]="['/exchange']" [queryParams]="{code: stock.code}"
-                  routerLinkActive="router-link-active">Mua</a>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-    </div>
   </div>
 </div>
 <div class="row">
   <div class="col-12 grid-margin">
-    <div class="card">
-      <div class="card-body">
-        <h4 class=" font-weight-bold">Thông tin về bất động sản</h4>
-        <h5>Địa chỉ: {{stock.address}}</h5>
-        <h5>Diện tích: {{stock.squareMeter}}</h5>
-        <h5>Mô tả</h5>
-        <p>
-          {{stock.description}}
-        </p>
+      <div class="card">
+          <div class="card-body">
+              <h4 class="font-weight-bold">Thông tin về bất động sản</h4>
+              <div style="text-align: justify;" [innerHtml]="estate?.description">
+              </div>
+          </div>
       </div>
-    </div>
   </div>
 </div>

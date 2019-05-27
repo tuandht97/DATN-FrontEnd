@@ -55,7 +55,6 @@ export class EstateListComponent implements OnInit {
 
   getAll() {
     this.estateService.getAll().subscribe(data => {
-      console.log(data)
       this.dataSource = new MatTableDataSource(data.result);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -87,5 +86,9 @@ export class EstateListComponent implements OnInit {
 
   goUpdate(id) {
     this.router.navigate(['estate/update/' + id])
+  }
+
+  getRecord(value: any){
+    this.router.navigate(['estate/' + value])
   }
 }

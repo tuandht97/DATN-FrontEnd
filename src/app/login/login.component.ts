@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
   upload() {
     const formData = new FormData();
     const files = this.filesToUpload;
-    console.log(files)
     if (files.item(0).type !== "text/plain") {
       this.toastr.error("File tải lên định dạng không phù hợp");
       return;
@@ -49,7 +48,6 @@ export class LoginComponent implements OnInit {
     formData.append('key', files.item(0), files.item(0).name);
     this.auth.login(formData)
       .subscribe(result => {
-        this.toastr.success("Đăng nhập thành công")
         this.router.navigate(['exchange'])
       },
         err => {

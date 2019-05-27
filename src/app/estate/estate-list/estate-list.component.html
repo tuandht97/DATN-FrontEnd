@@ -15,8 +15,7 @@
             <!-- Progress Column -->
             <ng-container matColumnDef="name">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Tên bất động sản </mat-header-cell>
-              <mat-cell *matCellDef="let row"> <a [routerLink]="['/estate', row.id]"
-                  routerLinkActive="router-link-active">{{row.name}}</a> </mat-cell>
+              <mat-cell *matCellDef="let row" routerLinkActive="router-link-active">{{row.name}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="id">
@@ -60,7 +59,8 @@
             </ng-container>
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getRecord(row.id)"
+              class="example-element-row">
             </mat-row>
           </mat-table>
 

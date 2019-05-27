@@ -4,16 +4,6 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-8">
-                        <!-- <ngb-carousel>
-                            <ng-template ngbSlide>
-                                <img src="https://lorempixel.com/900/500?r=1" alt="Random first slide" height="auto"
-                                    width="100%">
-                            </ng-template>
-                            <ng-template ngbSlide *ngFor="let url of urls">
-                                <img src="{{url}}" alt="Random second slide" height="auto" width="100%">
-                            </ng-template>
-                        </ngb-carousel> -->
-                        <!-- <ng-container *ngIf="urls; else loading"> -->
                         <ng-container *ngIf="urls">
                             <ng-container *ngFor="let u of url$ | async as urls">
                             </ng-container>

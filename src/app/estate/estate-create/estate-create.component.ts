@@ -39,7 +39,6 @@ export class EstateCreateComponent implements OnInit {
       amount: [1, [Validators.required, Validators.min(1)]],
       sumPrice: ['', [Validators.required, Validators.min(10000)]],
       price: [1, Validators.required],
-      typeEstate: ['', Validators.required],
       address: ['', [Validators.required, Validators.maxLength(200)]],
       squareMeter: ['', [Validators.required, Validators.min(0)]],
       description: [null, Validators.required]
@@ -97,8 +96,12 @@ export class EstateCreateComponent implements OnInit {
       .pipe(first())
       .subscribe(
         result => {
-          this.toastr.success("Tạo bất động sản thành công")
-          this.router.navigate(['estate'])
+          if (result["error"])
+            this.toastr.error("Tạo bất động sản không thành công:" + result["error"])
+          else {
+            this.toastr.success("Tạo bất động sản thành công")
+            this.router.navigate(['estate'])
+          }
         },
         err => {
           this.toastr.error("Tạo bất động sản không thành công")
@@ -109,6 +112,7 @@ export class EstateCreateComponent implements OnInit {
   get f() { return this.estateForm.controls; }
 
   onKey(value: number) {
+    this.sum = value;
     this.pay = (value / 100000) / this.estateForm.value.amount;
     if (this.pay < 1)
       this.pay = 1;

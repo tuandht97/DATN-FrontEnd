@@ -1,8 +1,21 @@
 button a {
-    text-decoration: none;
-    color:white;
+  text-decoration: none;
+  color: white;
 }
 
-mat-header-cell:nth-child(1), mat-cell:nth-child(1) {
-    flex: 0 0 30%;
+mat-header-cell:nth-child(1),
+mat-cell:nth-child(1) {
+  flex: 0 0 30%;
+}
+
+.example-element-row:not(.example-expanded-row):hover {
+  background: #f5f5f5;
+}
+
+.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
 }

@@ -28,12 +28,8 @@ export class ItemService {
   // }
 
   getAll(): Observable<any> {
-    if (this.currentRole == Org.Admin)
-      return this.http.get<any>(`/api/regulator/list-advertising`);
-    if (this.currentRole == Org.Seller)
-      return this.http.get<any>(`/api/realestate/list-advertising`);
-    if (this.currentRole == Org.User)
-      return this.http.get<any>(`/api/trader/list-advertising`);
+    console.log("cc")
+      return this.http.get<any>(`/api/auth/exchange`);
   }
 
   getByUser(): Observable<any> {

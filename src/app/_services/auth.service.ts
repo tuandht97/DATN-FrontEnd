@@ -39,8 +39,9 @@ export class AuthService {
   }
 
   public get getCurrentUser(): string {
-    if (this.currentUser)
+    if (this.currentUser) {
       return this.currentUser.value;
+    }
     return null;
   }
 
@@ -61,9 +62,16 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('access_token');
-    this.currentUserRole.next(null);
-    this.currentUser.next(null);
+    return this.http.post('/api/auth/logout', null)
+      .pipe(map(result => {
+        localStorage.removeItem('access_token');
+        this.currentUserRole.next(null);
+        this.currentUser.next(null);
+      })
+      );
+    // localStorage.removeItem('access_token');
+    // this.currentUserRole.next(null);
+    // this.currentUser.next(null);
   }
 
   public getToken(): string {

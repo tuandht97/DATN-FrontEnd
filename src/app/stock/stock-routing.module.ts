@@ -20,7 +20,7 @@ const router: Routes = [
                 data: { roles: Org.Admin }
             },
             {
-                path: ':code',
+                path: ':id',
                 component: StockDetailComponent,
                 canActivate: [AuthGuard],
             }

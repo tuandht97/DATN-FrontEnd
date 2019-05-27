@@ -37,7 +37,7 @@ export class ExchangeComponent implements OnInit {
     this.currentUser = this.auth.getCurrentUser;
     if (this.isUser)
       this.displayedColumns.push('buy')
-    // this.getData();
+    this.getData();
   }
 
   ngOnInit() {
@@ -56,6 +56,7 @@ export class ExchangeComponent implements OnInit {
 
   getData() {
     this.itemService.getAll().subscribe(data => {
+      console.log(data)
       this.items = data.result;
       this.dataSource = new MatTableDataSource(data.result);
       this.dataSource.paginator = this.paginator;
@@ -72,5 +73,9 @@ export class ExchangeComponent implements OnInit {
     let item = this.items.find(i => i.uuid == id);
     this.itemService.setCurrentItem(item);
     this.router.navigate(['transaction/create/'])
+  }
+
+  getRecord(value: any){
+    this.router.navigate(['stock/' + value])
   }
 }

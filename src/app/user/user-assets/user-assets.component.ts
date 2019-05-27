@@ -48,14 +48,16 @@ export class UserAssetsComponent implements OnInit {
     this.userService.getAsset(this.currentUser).subscribe(data => {
       console.log(data)
       const asset = [];
-      for (let code in data["result"]["tritList"]) {
-        let a = { code: code, amount: data["result"]["tritList"][code] };
-        asset.push(a);
+      if (data["result"]) {
+        for (let code in data["result"]["tritList"]) {
+          let a = { code: code, amount: data["result"]["tritList"][code] };
+          asset.push(a);
+        }
+        this.balance = data['result']['balance'];
       }
       this.dataSource = new MatTableDataSource(asset);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      this.balance = data['result']['balance'];
 
       this.loaded = Promise.resolve(true);
     }, error => {

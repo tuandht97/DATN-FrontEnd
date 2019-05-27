@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { AuthService } from '../_services/auth.service';
@@ -9,7 +9,7 @@ import { AuthService } from '../_services/auth.service';
   styleUrls: ['./navbar.component.scss'],
   providers: [NgbDropdownConfig]
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, DoCheck {
   public sidebarOpened = false;
   currentUser: string;
 
@@ -31,11 +31,20 @@ export class NavbarComponent implements OnInit {
     config.placement = 'bottom-right';
     this.currentUser = this.auth.getCurrentUser;
   }
+
   ngOnInit() {
   }
 
+  ngDoCheck() {
+    this.currentUser = this.auth.getCurrentUser;
+  }
+
   logout() {
-    this.auth.logout();
-    this.router.navigate(['exchange']);
+    this.auth.logout().subscribe(result => {
+      this.router.navigate(['exchange'])
+    },
+      err => { }
+    );
+    // this.router.navigate(['exchange']);
   }
 }
