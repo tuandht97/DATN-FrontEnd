@@ -41,9 +41,10 @@ export class UserService {
   getAllUser(): Observable<any> {
     return this.http.get<any>(`/api/regulator/list-shareholder`);
   }
-}
 
-export interface List {
-  user: User[],
-  seller: User[]
+  async getById(username: string) {
+    let result: any;
+    result = await this.http.post(`/api/regulator/get-shareholder`, { username }).toPromise();
+    return result;
+  }
 }

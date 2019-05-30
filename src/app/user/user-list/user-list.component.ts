@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { User } from '../../_models/user';
 import { UserService } from 'src/app/_services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -20,7 +21,8 @@ export class UserListComponent implements OnInit {
   filter = '';
 
   constructor(
-    public userService: UserService
+    public userService: UserService,
+    private router: Router
   ) {
     this.getData();
   }
@@ -44,6 +46,10 @@ export class UserListComponent implements OnInit {
       this.userSource.sort = this.sort;
     }, error => {
     });
+  }
+
+  getRecord(value: any) {
+    this.router.navigate(['user/' + value])
   }
 }
 

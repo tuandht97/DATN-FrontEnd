@@ -58,6 +58,7 @@ export class ItemCreateComponent implements OnInit {
         this.toastr.error("Bạn chưa có mã nào trong tài sản")
       }
     }, error => {
+      console.log(error)
     });
   }
 

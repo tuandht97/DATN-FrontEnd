@@ -56,9 +56,12 @@ export class ExchangeComponent implements OnInit {
 
   getData() {
     this.itemService.getAll().subscribe(data => {
-      console.log(data)
-      this.items = data.result;
-      this.dataSource = new MatTableDataSource(data.result);
+      if (data.result) {
+        this.items = data.result;
+        this.dataSource = new MatTableDataSource(data.result);
+      } else {
+        this.dataSource = new MatTableDataSource();
+      }
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }, error => {
@@ -75,7 +78,7 @@ export class ExchangeComponent implements OnInit {
     this.router.navigate(['transaction/create/'])
   }
 
-  getRecord(value: any){
+  getRecord(value: any) {
     this.router.navigate(['stock/' + value])
   }
 }
