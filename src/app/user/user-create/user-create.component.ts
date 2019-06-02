@@ -1,40 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../_services/auth.service';
-import { UserService } from '../_services/user.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/_services/auth.service';
+import { UserService } from 'src/app/_services/user.service';
 import { Router } from '@angular/router';
-import { first } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
-
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { first } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  selector: 'app-user-create',
+  templateUrl: './user-create.component.html',
+  styleUrls: ['./user-create.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class UserCreateComponent implements OnInit {
 
   registerForm: FormGroup;
   submitted = false;
 
   constructor(
-    private auth: AuthService,
     private userService: UserService,
-    private router: Router,
     private toastr: ToastrService,
-    private formBuilder: FormBuilder
-  ) {
-    if (this.auth.getCurrentUserRole) {
-      this.router.navigate(['/']);
-    }
-  }
+    private formBuilder: FormBuilder,
+    private auth: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    if (this.auth.getCurrentUser !== 'admin')
+      this.router.navigate(['user/list']);
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      org: ['', Validators.required],
+      org: ['Regulator'],
       identityCard: ['', [Validators.required, Validators.maxLength(12), Validators.minLength(9)]]
     });
   }
@@ -46,20 +43,27 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    this.userService.register(this.registerForm.value)
+    this.userService.createRegulator(this.registerForm.value)
       .pipe(first())
       .subscribe(
         result => {
           if (result["error"]) {
-            this.toastr.error("Đăng kí không thành công: " + result["error"])
+            this.toastr.error("Tạo tài khoản không thành công: " + result["error"])
           } else {
             this.writeContents(JSON.stringify(result), this.registerForm.value.username, 'text/plain');
-            this.toastr.success("Đăng kí thành công");
-            this.router.navigate(['login']);
+            this.toastr.success("Tạo tài khoản thành công");
+            this.submitted = false;
+            this.registerForm.reset({
+              username: '',
+              firstName: '',
+              lastName: '',
+              org: 'Regulator',
+              identityCard: ''
+            })
           }
         },
         err => {
-          this.toastr.error("Đăng kí không thành công")
+          this.toastr.error("Tạo tài khoản không thành công")
         }
       );
   }
@@ -74,3 +78,4 @@ export class RegisterComponent implements OnInit {
     a.click();
   }
 }
+

@@ -39,6 +39,10 @@ export class SidebarComponent implements OnInit {
     return this.currentUserRole === Org.Admin;
   }
 
+  get isCreater() {
+    return this.currentUserRole === Org.Admin && this.currentUser === 'admin';
+  }
+
   get isSeller() {
     return this.currentUserRole === Org.Seller;
   }

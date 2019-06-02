@@ -72,5 +72,11 @@
         <span class="menu-title">Tài sản</span>
       </a>
     </li>
+    <li class="nav-item" *ngIf="isCreater">
+      <a class="nav-link" routerLink="/user/create" routerLinkActive="active">
+        <i class="menu-icon mdi mdi-account-plus"></i>
+        <span class="menu-title">Tạo nhà phát hành</span>
+      </a>
+    </li>
   </ul>
 </nav>

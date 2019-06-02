@@ -2,24 +2,9 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <h4 class="font-weight-bold">Đăng kí</h4>
+        <h4 class="font-weight-bold">Tạo tài khoản nhà phát hành</h4>
         <br>
         <form class="forms-sample" (ngSubmit)="submit()" [formGroup]="registerForm">
-          <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Đối tượng</label>
-            <div class="col-sm-9">
-              <select class="form-control" formControlName="org"
-                [ngClass]="{ 'is-invalid': submitted && f.org.errors }">
-                <option selected disabled value="">Chọn loại đối tượng</option>
-                <option value="RealEstate">Người bán BDS - Môi giới BDS - Công ty BDS</option>
-                <option value="Trader">Nhà đầu tư mã</option>
-              </select>
-              <div *ngIf="submitted && f.org.errors" class="invalid-feedback">
-                <div *ngIf="f.org.errors.required">Bạn chưa chọn loại đối tượng
-                </div>
-              </div>
-            </div>
-          </div>
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">Tài khoản</label>
             <div class="col-sm-9">
@@ -68,16 +53,10 @@
               </div>
             </div>
           </div>
-          <p class="text-danger text-center">Sau khi đăng kí thành công, hệ thống sẽ gửi cho bạn một file Identity. Sử dụng file này để đăng nhập vào hệ thống.
           <div class="form-row text-center">
             <div class="col-12">
-              <button type="submit" class="btn btn-primary btn-lg">Đăng kí</button>
+              <button type="submit" class="btn btn-primary btn-lg">Tạo tài khoản</button>
             </div>
-          </div>
-          <div class="register-link m-t-15 text-center">
-            <p>Bạn đã có tài khoản? <a [routerLink]="['/login']" routerLinkActive="router-link-active"> Đăng
-                nhập</a>
-            </p>
           </div>
         </form>
       </div>

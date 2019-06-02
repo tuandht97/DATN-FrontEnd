@@ -25,6 +25,10 @@ export class UserService {
     return this.http.post(`/api/auth/register`, user);
   }
 
+  createRegulator(user: User) {
+    return this.http.post(`/api/regulator/create-publisher`, user);
+  }
+
   getAsset(username: string): Observable<any> {
     if (this.currentRole == Org.Seller) {
       return this.http.post(`/api/realestate/get-shareholder`, { username });
@@ -47,4 +51,6 @@ export class UserService {
     result = await this.http.post(`/api/regulator/get-shareholder`, { username }).toPromise();
     return result;
   }
+
+
 }

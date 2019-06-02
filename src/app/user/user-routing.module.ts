@@ -9,6 +9,7 @@ import { UserCoinComponent } from './user-coin/user-coin.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { Org } from '../_enum/org.enum';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import { UserCreateComponent } from './user-create/user-create.component';
 
 const userRoutes: Routes = [
     {
@@ -30,6 +31,12 @@ const userRoutes: Routes = [
             {
                 path: 'list',
                 component: UserListComponent,
+                canActivate: [AuthGuard],
+                data: { roles: Org.Admin }
+            },
+            {
+                path: 'create',
+                component: UserCreateComponent,
                 canActivate: [AuthGuard],
                 data: { roles: Org.Admin }
             },

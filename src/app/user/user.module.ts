@@ -7,6 +7,7 @@ import { SharedModule } from '../_shared/shared.module';
 import { UserCoinComponent } from './user-coin/user-coin.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import { UserCreateComponent } from './user-create/user-create.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     UserAssetsComponent,
     UserCoinComponent,
     UserListComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    UserCreateComponent
   ],
   imports: [
     CommonModule,
