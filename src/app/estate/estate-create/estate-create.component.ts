@@ -96,6 +96,7 @@ export class EstateCreateComponent implements OnInit {
       .pipe(first())
       .subscribe(
         result => {
+          console.log(result)
           if (result["error"])
             this.toastr.error("Tạo bất động sản không thành công:" + result["error"])
           else {
