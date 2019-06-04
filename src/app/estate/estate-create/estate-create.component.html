@@ -61,7 +61,7 @@
                 <div>
                   <input type="number" formControlName="sumPrice" class="form-control"
                     [ngClass]="{ 'is-invalid': submitted && f.sumPrice.errors }" placeholder="Giá bán cho mong muốn"
-                    #box (keyup)="onKey(box.value)" min="100000"/>
+                    #box (keyup)="onKey(box.value)" min="100000" />
                   <div *ngIf="submitted && f.sumPrice.errors" class="invalid-feedback">
                     <div *ngIf="f.sumPrice.errors.required">Bạn chưa nhập giá bán
                     </div>
@@ -149,10 +149,10 @@
                   <app-ngx-editor [placeholder]="'Nhập mô tả ...'" height="100px" formControlName="description"
                     [ngClass]="{ 'is-invalid': submitted && f.description.errors }">
                   </app-ngx-editor>
-                  <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                  <!-- <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
                     <div *ngIf="f.description.errors.required">Bạn chưa mô tả
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>

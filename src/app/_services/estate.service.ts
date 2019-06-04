@@ -36,10 +36,8 @@ export class EstateService {
   }
 
   async getById(id: string) {
-    console.log(this.currentRole)
-    if (this.currentRole == Org.Admin){
-      console.log(id)
-      // return this.http.get(`/api/regulator/get-real-estate/` + id);
+    this.currentRole = this.auth.getCurrentUserRole;
+    if (this.currentRole == Org.Admin) {
       let result: any;
       result = await this.http.get(`/api/regulator/get-real-estate/` + id).toPromise();
       return result;

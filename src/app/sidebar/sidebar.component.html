@@ -67,7 +67,8 @@
       </a>
     </li>
     <li class="nav-item" *ngIf="isUser || isSeller">
-      <a class="nav-link" routerLink="/user" routerLinkActive="active">
+      <a class="nav-link" routerLink="/user" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+        true}">
         <i class="menu-icon mdi mdi-home"></i>
         <span class="menu-title">Tài sản</span>
       </a>

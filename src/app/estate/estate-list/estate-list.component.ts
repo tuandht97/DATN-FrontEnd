@@ -88,7 +88,7 @@ export class EstateListComponent implements OnInit {
     this.router.navigate(['estate/update/' + id])
   }
 
-  getRecord(value: any){
+  getRecord(value: any) {
     this.router.navigate(['estate/' + value])
   }
 }

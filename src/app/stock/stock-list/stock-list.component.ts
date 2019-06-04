@@ -16,6 +16,8 @@ export class StockListComponent implements OnInit {
   dataSource: MatTableDataSource<Stock>;
   currentUserRole: string;
 
+  loaded: Promise<boolean>;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -39,6 +41,7 @@ export class StockListComponent implements OnInit {
 
   getData() {
     this.stockService.getAll().subscribe(data => {
+      this.loaded = Promise.resolve(true);
       if (data.result)
         this.dataSource = new MatTableDataSource(data.result);
       else

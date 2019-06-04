@@ -30,6 +30,7 @@ export class UserService {
   }
 
   getAsset(username: string): Observable<any> {
+    this.currentRole = this.auth.getCurrentUserRole;
     if (this.currentRole == Org.Seller) {
       return this.http.post(`/api/realestate/get-shareholder`, { username });
     }

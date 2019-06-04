@@ -16,6 +16,8 @@ export class UserCreateComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
 
+  displayProgressSpinner: boolean;
+
   constructor(
     private userService: UserService,
     private toastr: ToastrService,
@@ -32,7 +34,7 @@ export class UserCreateComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       org: ['Regulator'],
-      identityCard: ['', [Validators.required, Validators.maxLength(12), Validators.minLength(9)]]
+      identityCard: ['', [Validators.required, this.checkCard]]
     });
   }
 
@@ -42,11 +44,12 @@ export class UserCreateComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-
+    this.displayProgressSpinner = true;
     this.userService.createRegulator(this.registerForm.value)
       .pipe(first())
       .subscribe(
         result => {
+          this.displayProgressSpinner = false;
           if (result["error"]) {
             this.toastr.error("Tạo tài khoản không thành công: " + result["error"])
           } else {
@@ -76,6 +79,18 @@ export class UserCreateComponent implements OnInit {
     a.href = URL.createObjectURL(file);
     a.download = fileName;
     a.click();
+  }
+
+  checkCard(control) {
+    let value = control.value
+    let check = /^\d+$/;
+    let checkLength = value.length == 9 || value.length == 12;
+    if (value)
+      if (check.test(value) && checkLength) {
+        return null;
+      } else
+        return { 'cmt': true }
+    return null;
   }
 }
 

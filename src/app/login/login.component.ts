@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
   private filesToUpload = null;
   filename: string;
 
+  displayProgressSpinner: boolean;
+
   constructor(
     private auth: AuthService,
     private router: Router,
@@ -46,12 +48,15 @@ export class LoginComponent implements OnInit {
       return;
     }
     formData.append('key', files.item(0), files.item(0).name);
+    this.displayProgressSpinner = true;
     this.auth.login(formData)
       .subscribe(result => {
+        this.displayProgressSpinner = false;
         this.router.navigate(['exchange'])
       },
         err => {
-          this.toastr.error("Đăng nhập không thành công")}
+          this.toastr.error("Đăng nhập không thành công")
+        }
       );
   }
 }

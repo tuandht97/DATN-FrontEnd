@@ -32,6 +32,7 @@ export class UserAssetsComponent implements OnInit {
   ) {
     this.currentUserRole = this.auth.getCurrentUserRole;
     this.currentUser = this.auth.getCurrentUser;
+    console.log(this.currentUser)
     this.getData();
   }
 

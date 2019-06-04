@@ -41,7 +41,7 @@ export class EstateCreateComponent implements OnInit {
       price: [1, Validators.required],
       address: ['', [Validators.required, Validators.maxLength(200)]],
       squareMeter: ['', [Validators.required, Validators.min(0)]],
-      description: [null, Validators.required]
+      description: ['']
     });
   }
 
@@ -119,8 +119,8 @@ export class EstateCreateComponent implements OnInit {
   }
 
   onAmount(value: number) {
-    this.pay = (this.estateForm.value.sumPrice / 100000) / value;
-    if (this.pay < 1)
-      this.pay = 1;
+    // this.pay = (this.estateForm.value.sumPrice / 100000) / value;
+    // if (this.pay < 1)
+    //   this.pay = 1;
   }
 }

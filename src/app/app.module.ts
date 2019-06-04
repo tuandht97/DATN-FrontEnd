@@ -25,6 +25,7 @@ import { AuthGuard } from './_guards/auth.guard';
 import { JwtInterceptor } from './_auth/jwt.interceptor';
 
 import { SharedModule } from './_shared/shared.module';
+import { SpinnerModule } from './spinner/spinner.module';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -54,7 +55,8 @@ export function tokenGetter() {
         whitelistedDomains: ['localhost:3000']
       }
     }),
-    SharedModule.forRoot()
+    SharedModule.forRoot(),
+    SpinnerModule
   ],
   providers: [
     AuthService,

@@ -9,7 +9,7 @@
           </mat-form-field>
         </div>
 
-        <div class="example-container mat-elevation-z8">
+        <div class="example-container mat-elevation-z8" *ngIf="loaded | async">
 
           <mat-table [dataSource]="dataSource" matSort>
             <!-- Progress Column -->

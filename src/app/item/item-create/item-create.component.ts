@@ -46,6 +46,23 @@ export class ItemCreateComponent implements OnInit {
     private itemService: ItemService,
     private auth: AuthService
   ) {
+    // this.currentUser = this.auth.getCurrentUser;
+    // this.userService.getAsset(this.currentUser).subscribe(data => {
+    //   if (data["result"]) {
+    //     for (let code in data["result"]["tritList"]) {
+    //       let a = { code: code, amount: data["result"]["tritList"][code] };
+    //       this.assets.push(a);
+    //     }
+    //     this.code = data["result"]["publishedTrits"];
+    //   }else{
+    //     this.toastr.error("Bạn chưa có mã nào trong tài sản")
+    //   }
+    // }, error => {
+    //   console.log(error)
+    // });
+  }
+
+  ngOnInit() {
     this.currentUser = this.auth.getCurrentUser;
     this.userService.getAsset(this.currentUser).subscribe(data => {
       if (data["result"]) {
@@ -60,9 +77,7 @@ export class ItemCreateComponent implements OnInit {
     }, error => {
       console.log(error)
     });
-  }
-
-  ngOnInit() {
+    
     this.itemForm = this.formBuilder.group({
       tritId: ['', Validators.required],
       amount: ['', [Validators.required, Validators.min(1)]],
@@ -73,6 +88,10 @@ export class ItemCreateComponent implements OnInit {
         startWith(''),
         map(value => this._filter(value))
       );
+  }
+
+  ngDoCheck() {
+    this.currentUser = this.auth.getCurrentUser;
   }
 
   public submit() {

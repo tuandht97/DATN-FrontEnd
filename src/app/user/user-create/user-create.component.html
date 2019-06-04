@@ -1,3 +1,5 @@
+<app-spinner *ngIf="displayProgressSpinner" class="sq-global-backdrop center-aligned">
+</app-spinner>
 <div class="row">
   <div class="col-12">
     <div class="card">
@@ -46,9 +48,7 @@
               <div *ngIf="submitted && f.identityCard.errors" class="invalid-feedback">
                 <div *ngIf="f.identityCard.errors.required">Bạn chưa nhập chứng minh thư nhân dân
                 </div>
-                <div *ngIf="f.identityCard.errors.maxlength">Chứng minh thư không quá 12 kí tự
-                </div>
-                <div *ngIf="f.identityCard.errors.minlength">Chứng minh thư có độ dài 9 đến 12 kí tự
+                <div *ngIf="f.identityCard.errors.cmt">Số chứng minh thư có độ dài 9 hoặc 12 kí tự
                 </div>
               </div>
             </div>

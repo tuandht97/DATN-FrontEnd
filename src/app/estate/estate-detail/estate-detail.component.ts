@@ -62,7 +62,10 @@ export class EstateDetailComponent implements OnInit {
       .subscribe(
         result => {
           this.toastr.success("Xác nhận thành công");
-          this.router.navigate(['stock'])
+          setTimeout(() => {
+            this.router.navigate(['stock'])
+          }, 2000)
+          // // this.router.navigate(['stock'])
         },
         err => {
           this.toastr.error("Xác nhận và tạo mã không thành công")

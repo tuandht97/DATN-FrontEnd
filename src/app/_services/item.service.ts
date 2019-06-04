@@ -33,6 +33,7 @@ export class ItemService {
   }
 
   getByUser(): Observable<any> {
+    this.currentRole = this.auth.getCurrentUserRole;
     if (this.currentRole == Org.Seller)
       return this.http.get<any>(`/api/realestate/list-advertising`);
     if (this.currentRole == Org.User)

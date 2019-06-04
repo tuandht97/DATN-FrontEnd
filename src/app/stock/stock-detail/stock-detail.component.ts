@@ -19,6 +19,7 @@ export class StockDetailComponent implements OnInit {
   currentUserRole: string;
   currentUser: string;
   public estate: Estate;
+  price: number;
 
   submited: boolean = false;
 
@@ -44,6 +45,9 @@ export class StockDetailComponent implements OnInit {
       console.log(estate)
       if (estate["result"]) {
         this.estate = estate["result"];
+        this.price = Math.ceil(this.estate.price / this.estate.amount);
+        if (this.price < 1)
+          this.price = 1;
         this.estate.images.forEach(img => {
           let url = 'http://localhost:3000/uploads/' + img
           this.urls.push(url);

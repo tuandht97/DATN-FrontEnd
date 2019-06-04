@@ -14,6 +14,7 @@ import {
   MatInputModule,
   MatSortModule,
   MatAutocompleteModule,
+  MatProgressSpinnerModule,
   MatOptionModule
 } from '@angular/material';
 
@@ -35,6 +36,7 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule,
     MatPaginatorModule,
     MatOptionModule,
+    MatProgressSpinnerModule,
     MatAutocompleteModule,
     MatSortModule,
     NgxEditorModule,

@@ -8,6 +8,7 @@ import { UserCoinComponent } from './user-coin/user-coin.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { UserCreateComponent } from './user-create/user-create.component';
+import { SpinnerModule } from '../spinner/spinner.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { UserCreateComponent } from './user-create/user-create.component';
   imports: [
     CommonModule,
     UserRoutingModule,
-    SharedModule
+    SharedModule,
+    SpinnerModule
   ]
 })
 export class UserModule { }

@@ -31,7 +31,7 @@
             <!-- Name Column -->
             <ng-container matColumnDef="price">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Giá bán </mat-header-cell>
-              <mat-cell *matCellDef="let row"> {{row.price | number}} coin </mat-cell>
+              <mat-cell *matCellDef="let row"> {{row.price | number:'1.0-0'}} coin </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="amount">

@@ -21,6 +21,7 @@ export class TransactionService {
   }
 
   getAll(): Observable<any> {
+    this.currentRole = this.auth.getCurrentUserRole;
     if (this.currentRole == Org.User)
       return this.http.get<any>(`/api/trader/list-transfer-contract`);
     if (this.currentRole == Org.Seller)
@@ -28,6 +29,7 @@ export class TransactionService {
   }
 
   getBuy(username: string) {
+    this.currentRole = this.auth.getCurrentUserRole;
     if (this.currentRole == Org.User)
       return this.http.post(`/api/trader/list-transfer-contract-by-buyer`, { username });
     if (this.currentRole == Org.Seller)
@@ -35,6 +37,7 @@ export class TransactionService {
   }
 
   getSell(username: string) {
+    this.currentRole = this.auth.getCurrentUserRole;
     if (this.currentRole == Org.User)
       return this.http.post(`/api/trader/list-transfer-contract-by-seller`, { username });
     if (this.currentRole == Org.Seller)

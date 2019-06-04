@@ -1,3 +1,7 @@
+<app-spinner [color]="color" [mode]="mode" [value]="value" *ngIf="displayProgressSpinner"
+  class="sq-global-backdrop center-aligned">
+</app-spinner>
+
 <div class="row">
   <div class="col-12">
     <div class="card">
@@ -61,24 +65,23 @@
               <div *ngIf="submitted && f.identityCard.errors" class="invalid-feedback">
                 <div *ngIf="f.identityCard.errors.required">Bạn chưa nhập chứng minh thư nhân dân
                 </div>
-                <div *ngIf="f.identityCard.errors.maxlength">Chứng minh thư không quá 12 kí tự
-                </div>
-                <div *ngIf="f.identityCard.errors.minlength">Chứng minh thư có độ dài 9 đến 12 kí tự
+                <div *ngIf="f.identityCard.errors.cmt">Số chứng minh thư có độ dài 9 hoặc 12 kí tự
                 </div>
               </div>
             </div>
           </div>
-          <p class="text-danger text-center">Sau khi đăng kí thành công, hệ thống sẽ gửi cho bạn một file Identity. Sử dụng file này để đăng nhập vào hệ thống.
-          <div class="form-row text-center">
-            <div class="col-12">
-              <button type="submit" class="btn btn-primary btn-lg">Đăng kí</button>
+          <p class="text-danger text-center">Sau khi đăng kí thành công, hệ thống sẽ gửi cho bạn một file Identity. Sử
+            dụng file này để đăng nhập vào hệ thống.
+            <div class="form-row text-center">
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary btn-lg">Đăng kí</button>
+              </div>
             </div>
-          </div>
-          <div class="register-link m-t-15 text-center">
-            <p>Bạn đã có tài khoản? <a [routerLink]="['/login']" routerLinkActive="router-link-active"> Đăng
-                nhập</a>
-            </p>
-          </div>
+            <div class="register-link m-t-15 text-center">
+              <p>Bạn đã có tài khoản? <a [routerLink]="['/login']" routerLinkActive="router-link-active"> Đăng
+                  nhập</a>
+              </p>
+            </div>
         </form>
       </div>
     </div>
