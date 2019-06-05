@@ -40,11 +40,10 @@ export class EstateDetailComponent implements OnInit {
       map(params => params.get('id')),
       switchMap(id => this.estateService.getById(id))
     ).subscribe(estate => {
-      console.log(estate)
       if (estate["result"]) {
         this.estate = estate["result"];
         this.estate.images.forEach(img => {
-          let url = 'http://localhost:3000/uploads/' + img
+          let url = 'http://35.247.165.184:8000/uploads/' + img
           this.urls.push(url);
         });
         if (this.estate.actice == 'Publish')

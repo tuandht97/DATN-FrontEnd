@@ -1,6 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
-import { Subject } from 'rxjs/Subject';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
@@ -25,6 +23,8 @@ export class ItemCreateComponent implements OnInit {
   currentUser: string;
 
   public typeaheadFocusModel: any;
+
+  displayProgressSpinner: boolean;
 
   code: string[] = [];
   assets = [];
@@ -58,26 +58,28 @@ export class ItemCreateComponent implements OnInit {
     //     this.toastr.error("Bạn chưa có mã nào trong tài sản")
     //   }
     // }, error => {
-    //   console.log(error)
     // });
   }
 
   ngOnInit() {
     this.currentUser = this.auth.getCurrentUser;
+    this.displayProgressSpinner = true;
     this.userService.getAsset(this.currentUser).subscribe(data => {
+      this.displayProgressSpinner = false;
       if (data["result"]) {
         for (let code in data["result"]["tritList"]) {
           let a = { code: code, amount: data["result"]["tritList"][code] };
           this.assets.push(a);
         }
         this.code = data["result"]["publishedTrits"];
-      }else{
+      } else {
         this.toastr.error("Bạn chưa có mã nào trong tài sản")
       }
     }, error => {
-      console.log(error)
+      this.displayProgressSpinner = false;
+      this.toastr.error("Lỗi tải dữ liệu")
     });
-    
+
     this.itemForm = this.formBuilder.group({
       tritId: ['', Validators.required],
       amount: ['', [Validators.required, Validators.min(1)]],
@@ -95,7 +97,6 @@ export class ItemCreateComponent implements OnInit {
   }
 
   public submit() {
-    console.log(this.itemForm.value)
     this.submitted = true;
 
     if (this.itemForm.invalid) {

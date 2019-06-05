@@ -65,6 +65,7 @@ export class RegisterComponent implements OnInit {
         },
         err => {
           this.toastr.error("Đăng kí không thành công")
+          this.displayProgressSpinner = false;
         }
       );
   }

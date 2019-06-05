@@ -1,3 +1,6 @@
+<app-spinner [color]="color" [mode]="mode" [value]="value" *ngIf="displayProgressSpinner"
+  class="sq-global-backdrop center-aligned">
+</app-spinner>
 <div class="row">
   <div class="col-12 grid-margin">
     <div class="card">
@@ -20,7 +23,7 @@
 
             <!-- Name Column -->
             <ng-container matColumnDef="price">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> Giá bán </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Tổng giá trị </mat-header-cell>
               <mat-cell *matCellDef="let row"> {{row.price}} coin</mat-cell>
             </ng-container>
 

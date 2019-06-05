@@ -5,6 +5,7 @@ import { TransactionRoutingModule } from './transaction-routing.module';
 import { TransactionComponent } from './transaction.component';
 import { TransactionListComponent } from './transaction-list/transaction-list.component';
 import { SharedModule } from '../_shared/shared.module';
+import { SpinnerModule } from '../spinner/spinner.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { SharedModule } from '../_shared/shared.module';
   imports: [
     CommonModule,
     TransactionRoutingModule,
-    SharedModule
+    SharedModule,
+    SpinnerModule
   ]
 })
 export class TransactionModule { }

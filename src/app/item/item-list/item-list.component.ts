@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class ItemListComponent implements OnInit {
 
   items;
+  displayProgressSpinner: boolean;
   displayedColumns = ['tritId', 'amount', 'price', 'btn'];
   dataSource: MatTableDataSource<any>;
 
@@ -25,6 +26,7 @@ export class ItemListComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService
   ) {
+    this.displayProgressSpinner = true;
     this.getData();
   }
 
@@ -46,7 +48,9 @@ export class ItemListComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }, error => {
+      this.toastr.error("Lỗi tải dữ liệu");
     });
+    this.displayProgressSpinner = false;
   }
 
   removeItem(id) {

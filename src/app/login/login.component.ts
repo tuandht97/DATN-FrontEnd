@@ -55,7 +55,8 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['exchange'])
       },
         err => {
-          this.toastr.error("Đăng nhập không thành công")
+          this.toastr.error("Đăng nhập không thành công");
+          this.displayProgressSpinner = false;
         }
       );
   }

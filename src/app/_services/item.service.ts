@@ -28,7 +28,6 @@ export class ItemService {
   // }
 
   getAll(): Observable<any> {
-    console.log("cc")
       return this.http.get<any>(`/api/auth/exchange`);
   }
 

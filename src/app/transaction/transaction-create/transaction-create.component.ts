@@ -51,6 +51,7 @@ export class TransactionCreateComponent implements OnInit {
     this.userService.getAsset(this.currentUser).subscribe(data => {
       this.balance = data["result"]['balance'];
     }, error => {
+      this.toastr.error("Lỗi tải dữ liệu")
     });
   }
 

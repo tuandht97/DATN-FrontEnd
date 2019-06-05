@@ -41,3 +41,23 @@
   margin: auto;
   max-width: 30rem;
 }
+
+.center-aligned {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sq-global-backdrop {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.288);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 100%;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}

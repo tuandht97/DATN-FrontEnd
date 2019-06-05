@@ -3,6 +3,7 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { UserService } from '../../_services/user.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { Org } from '../../_enum/org.enum';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-assets',
@@ -21,6 +22,8 @@ export class UserAssetsComponent implements OnInit {
 
   loaded: Promise<boolean>;
 
+  displayProgressSpinner: boolean;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -28,12 +31,14 @@ export class UserAssetsComponent implements OnInit {
 
   constructor(
     public userService: UserService,
-    public auth: AuthService
+    public auth: AuthService,
+    private toastr: ToastrService
   ) {
     this.currentUserRole = this.auth.getCurrentUserRole;
     this.currentUser = this.auth.getCurrentUser;
-    console.log(this.currentUser)
+    this.displayProgressSpinner = true;
     this.getData();
+    this.displayProgressSpinner = false;
   }
 
   ngOnInit() {
@@ -47,7 +52,6 @@ export class UserAssetsComponent implements OnInit {
 
   getData() {
     this.userService.getAsset(this.currentUser).subscribe(data => {
-      console.log(data)
       const asset = [];
       if (data["result"]) {
         for (let code in data["result"]["tritList"]) {
@@ -62,6 +66,7 @@ export class UserAssetsComponent implements OnInit {
 
       this.loaded = Promise.resolve(true);
     }, error => {
+      this.toastr.error("Lỗi tải dữ liệu");
     });
   }
 

@@ -4,6 +4,7 @@ import { Transaction } from '../../_models/transaction';
 import { TransactionService } from '../../_services/transaction.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { Org } from '../../_enum/org.enum';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-transaction-list',
@@ -21,6 +22,8 @@ export class TransactionListComponent implements OnInit {
   currentUserRole: string;
   currentUser: string;
 
+  displayProgressSpinner: boolean;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -28,13 +31,16 @@ export class TransactionListComponent implements OnInit {
   filter2 = '';
 
   constructor(
-    public tranService: TransactionService,
-    public auth: AuthService
+    private tranService: TransactionService,
+    private auth: AuthService,
+    private toastr: ToastrService
   ) {
     this.currentUser = this.auth.getCurrentUser;
     this.currentUserRole = this.auth.getCurrentUserRole;
+    this.displayProgressSpinner = true;
     this.getDataSell();
     this.getDataBuy();
+    this.displayProgressSpinner = false;
   }
 
   ngOnInit() {
@@ -61,6 +67,7 @@ export class TransactionListComponent implements OnInit {
       this.buySource.paginator = this.paginator;
       this.buySource.sort = this.sort;
     }, error => {
+      this.toastr.error("Lỗi tải dữ liệu");
     });
   }
 
@@ -73,6 +80,7 @@ export class TransactionListComponent implements OnInit {
       this.sellSource.paginator = this.paginator;
       this.sellSource.sort = this.sort;
     }, error => {
+      this.toastr.error("Lỗi tải dữ liệu");
     });
   }
 

@@ -6,6 +6,7 @@ import { EstateService } from '../../_services/estate.service';
 import { Router } from '@angular/router';
 
 import { Org } from '../../_enum/org.enum';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-estate-list',
@@ -17,6 +18,8 @@ export class EstateListComponent implements OnInit {
   filter = '';
   currentUserRole: string;
 
+  displayProgressSpinner: boolean;
+
   displayedColumns = ['name', 'id', 'ownerId', 'price', 'amount', 'actice', 'btn'];
   dataSource: MatTableDataSource<Estate>;
 
@@ -26,9 +29,11 @@ export class EstateListComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private estateService: EstateService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
     this.currentUserRole = this.auth.getCurrentUserRole;
+    this.displayProgressSpinner = true;
     if (this.currentUserRole === Org.Admin)
       this.getAll();
     if (this.currentUserRole === Org.Seller)
@@ -58,17 +63,22 @@ export class EstateListComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data.result);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.displayProgressSpinner = false;
     }, error => {
-    });
+      this.displayProgressSpinner = false;
+      this.toastr.error("Lỗi tải dữ liệu")
+    })
   }
 
   getEstateUser() {
     this.estateService.getEstateUser().subscribe(data => {
-      console.log(data)
       this.dataSource = new MatTableDataSource(data.result);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.displayProgressSpinner = false;
     }, error => {
+      this.displayProgressSpinner = false;
+      this.toastr.error("Lỗi tải dữ liệu")
     });
   }
 

@@ -3,6 +3,7 @@ import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { User } from '../../_models/user';
 import { UserService } from 'src/app/_services/user.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-list',
@@ -22,7 +23,8 @@ export class UserListComponent implements OnInit {
 
   constructor(
     public userService: UserService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
     this.getData();
   }
@@ -45,6 +47,7 @@ export class UserListComponent implements OnInit {
       this.userSource.paginator = this.paginator;
       this.userSource.sort = this.sort;
     }, error => {
+      this.toastr.error("Lỗi tải dữ liệu");
     });
   }
 

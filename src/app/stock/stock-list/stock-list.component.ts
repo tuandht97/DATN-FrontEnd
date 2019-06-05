@@ -3,6 +3,7 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Stock } from 'src/app/_models/stock';
 import { StockService } from 'src/app/_services/stock.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -18,6 +19,8 @@ export class StockListComponent implements OnInit {
 
   loaded: Promise<boolean>;
 
+  displayProgressSpinner: boolean;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -25,8 +28,10 @@ export class StockListComponent implements OnInit {
 
   constructor(
     public stockService: StockService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
+    this.displayProgressSpinner = true;
     this.getData();
   }
 
@@ -49,10 +54,12 @@ export class StockListComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }, error => {
+      this.toastr.error("Lỗi tải dữ liệu");
     });
+    this.displayProgressSpinner = false;
   }
 
-  getRecord(value: any){
+  getRecord(value: any) {
     this.router.navigate(['stock/' + value])
   }
 }

@@ -69,9 +69,6 @@ export class AuthService {
         this.currentUser.next(null);
       })
       );
-    // localStorage.removeItem('access_token');
-    // this.currentUserRole.next(null);
-    // this.currentUser.next(null);
   }
 
   public getToken(): string {

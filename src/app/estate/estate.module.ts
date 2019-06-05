@@ -7,6 +7,7 @@ import { EstateCreateComponent } from './estate-create/estate-create.component';
 import { EstateRoutingModule } from './estate-routing.module';
 import { SharedModule } from '../_shared/shared.module';
 import { EstateUpdateComponent } from './estate-update/estate-update.component';
+import { SpinnerModule } from '../spinner/spinner.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { EstateUpdateComponent } from './estate-update/estate-update.component';
   imports: [
     CommonModule,
     EstateRoutingModule,
-    SharedModule
+    SharedModule,
+    SpinnerModule
   ]
 })
 export class EstateModule { }
