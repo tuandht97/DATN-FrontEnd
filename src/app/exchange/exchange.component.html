@@ -15,8 +15,7 @@
             <!-- Progress Column -->
             <ng-container matColumnDef="tritId">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Mã </mat-header-cell>
-              <mat-cell *matCellDef="let row"> <a [routerLink]="['/stock', row.uuid]"
-                  routerLinkActive="router-link-active">{{row.tritId}}</a> </mat-cell>
+              <mat-cell *matCellDef="let row"> {{row.tritId}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="seller">
@@ -52,7 +51,7 @@
             </ng-container>
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getRecord(row.id)"
+            <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getRecord(row.uuid)"
               class="example-element-row">
             </mat-row>
           </mat-table>

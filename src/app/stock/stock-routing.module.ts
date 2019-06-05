@@ -22,7 +22,7 @@ const router: Routes = [
             {
                 path: ':id',
                 component: StockDetailComponent,
-                canActivate: [AuthGuard],
+                // canActivate: [AuthGuard],
             }
         ]
     }
