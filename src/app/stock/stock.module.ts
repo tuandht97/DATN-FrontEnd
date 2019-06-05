@@ -6,6 +6,7 @@ import { StockDetailComponent } from './stock-detail/stock-detail.component';
 
 import { StockRoutingModule } from './stock-routing.module';
 import { SharedModule } from '../_shared/shared.module';
+import { SpinnerModule } from '../spinner/spinner.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SharedModule } from '../_shared/shared.module';
   imports: [
     CommonModule,
     StockRoutingModule,
-    SharedModule
+    SharedModule,
+    SpinnerModule
   ]
 })
 export class StockModule { }
