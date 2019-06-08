@@ -38,3 +38,57 @@ mat-cell:nth-child(1) {
   -webkit-tap-highlight-color: transparent;
   transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
+
+.mat-column-img {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 25% !important;
+  width: 25% !important;
+  overflow-wrap: break-word;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 24px;
+}
+
+.mat-column-data {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 60% !important;
+  width: 60% !important;
+  overflow-wrap: break-word;
+}
+
+.mat-column-btn {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 15% !important;
+  width: 15% !important;
+  overflow-wrap: break-word;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#contentInside {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 20px 10px;
+  border: 1px solid black;
+  //   display: inline-flex;
+  //   display: inline-block;
+  overflow: hidden;
+}
+
+#anh {
+  object-fit: cover;
+  //   display: block;
+  margin: auto;
+  width: 150px;
+  height: 150px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}

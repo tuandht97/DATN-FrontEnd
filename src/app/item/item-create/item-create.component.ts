@@ -121,8 +121,12 @@ export class ItemCreateComponent implements OnInit {
       .pipe(first())
       .subscribe(
         result => {
-          this.toastr.success("Giao bán mã thành công")
-          //        this.router.navigate(['item'])
+          if (result["error"])
+            this.toastr.error("Giao bán mã không thành công");
+          else {
+            this.toastr.success("Giao bán mã thành công");
+            //        this.router.navigate(['item'])
+          }
         },
         err => {
           this.toastr.error("Giao bán mã không thành công")

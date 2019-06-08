@@ -48,8 +48,11 @@ export class UserCoinComponent implements OnInit {
     this.userService.buyCoin(this.valueSel)
       .subscribe(
         result => {
-          this.toastr.success("Giao dịch thành công")
-        //  this.router.navigate(['user'])
+          if (result["error"])
+            this.toastr.error("Giao dịch không thành công");
+          else
+            this.toastr.success("Giao dịch thành công");
+          //  this.router.navigate(['user'])
         },
         err => {
           this.toastr.error("Giao dịch không thành công")

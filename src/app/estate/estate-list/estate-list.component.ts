@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 
 import { Org } from '../../_enum/org.enum';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-estate-list',
@@ -20,7 +21,10 @@ export class EstateListComponent implements OnInit {
 
   displayProgressSpinner: boolean;
 
-  displayedColumns = ['name', 'id', 'ownerId', 'price', 'amount', 'actice', 'btn'];
+  baseUrl = environment.baseUrl + '/uploads/';
+
+  // displayedColumns = ['img', 'name', 'id', 'ownerId', 'price', 'amount', 'actice', 'btn'];
+  displayedColumns = ['img', 'data', 'btn'];
   dataSource: MatTableDataSource<Estate>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -60,7 +64,9 @@ export class EstateListComponent implements OnInit {
 
   getAll() {
     this.estateService.getAll().subscribe(data => {
+      console.log(data)
       this.dataSource = new MatTableDataSource(data.result);
+      console.log(this.dataSource)
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.displayProgressSpinner = false;
@@ -72,7 +78,9 @@ export class EstateListComponent implements OnInit {
 
   getEstateUser() {
     this.estateService.getEstateUser().subscribe(data => {
+      console.log(data)
       this.dataSource = new MatTableDataSource(data.result);
+      console.log(this.dataSource)
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.displayProgressSpinner = false;

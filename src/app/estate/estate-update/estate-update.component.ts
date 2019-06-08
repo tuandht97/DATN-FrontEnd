@@ -120,8 +120,12 @@ export class EstateUpdateComponent implements OnInit {
       .pipe(first())
       .subscribe(
         result => {
-          this.toastr.success("Cập nhật động sản thành công")
-          this.router.navigate(['estate'])
+          if (result["error"])
+            this.toastr.error("Cập nhật động sản không thành công");
+          else {
+            this.toastr.success("Cập nhật động sản thành công");
+            this.router.navigate(['estate'])
+          }
         },
         err => {
           this.toastr.error("Cập nhật bất động sản không thành công")
@@ -132,7 +136,7 @@ export class EstateUpdateComponent implements OnInit {
   get f() { return this.estateForm.controls; }
 
   onKey(value: number) {
-    this.pay = (value / 100000);
+    this.pay = Math.ceil(value / 100000);
     if (this.pay < 1)
       this.pay = 1;
   }

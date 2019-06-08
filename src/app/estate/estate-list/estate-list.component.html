@@ -14,11 +14,11 @@
 
         <div class="example-container mat-elevation-z8">
 
-          <mat-table [dataSource]="dataSource" matSort>
-            <!-- Progress Column -->
+          <!-- <mat-table [dataSource]="dataSource" matSort>
             <ng-container matColumnDef="name">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Tên bất động sản </mat-header-cell>
-              <mat-cell *matCellDef="let row" routerLinkActive="router-link-active">{{row.name}}</mat-cell>
+              <mat-cell *matCellDef="let row" routerLinkActive="router-link-active">
+                  <img style="height: 100px; width: 100px" href="#">{{row.name}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="id">
@@ -31,7 +31,6 @@
               <mat-cell *matCellDef="let row"> {{row.ownerId}} </mat-cell>
             </ng-container>
 
-            <!-- Name Column -->
             <ng-container matColumnDef="price">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Giá bán </mat-header-cell>
               <mat-cell *matCellDef="let row"> {{row.price | number:'1.0-0'}} coin </mat-cell>
@@ -39,7 +38,8 @@
 
             <ng-container matColumnDef="amount">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Số lượng </mat-header-cell>
-              <mat-cell *matCellDef="let row"> {{row.amount}} </mat-cell>
+              <mat-cell *matCellDef="let row">
+                  <div style="height: 100px; width: 100px"></div> {{row.amount}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="actice">
@@ -65,8 +65,82 @@
             <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getRecord(row.id)"
               class="example-element-row">
             </mat-row>
-          </mat-table>
+          </mat-table> -->
 
+          <mat-table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="img">
+              <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                <div id="contentInside">
+                  <img id="anh" [src]="baseUrl + row.images[0]" *ngIf="row.images[0]">
+                  <img id="anh" src="assets/images/noimage.png" *ngIf="!row.images[0]">
+                </div>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="data">
+              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-12">
+                      <h4>{{row.name}} <span
+                          [ngClass]="{'text-danger': row.actice === 'Reject','text-success': row.actice === 'Publish','text-primary': row.actice === 'New'}">{{row.actice}}</span>
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-3">
+                      <p>Giá trị</p>
+                    </div>
+                    <div class="col-9">
+                      <p class="mb-2">
+                        {{row.price}} coin
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-3">
+                      <p>Địa chỉ</p>
+                    </div>
+                    <div class="col-9">
+                      <p class="mb-2">
+                        {{row.address}}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-3">
+                      <p>Diện tích</p>
+                    </div>
+                    <div class="col-9">
+                      <p class="mb-2">
+                        {{row.squareMeter}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="btn">
+              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                <button class="btn btn-primary btn-rounded btn-fw text-white" *ngIf="isAdmin"
+                  (click)="goConfig(row.id)">Xác
+                  nhận
+                </button>
+                <button class="btn btn-primary btn-rounded btn-fw text-white" *ngIf="isSeller"
+                  [disabled]="row?.actice == 'Publish'" (click)="goUpdate(row.id)">Cập nhật
+                </button>
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getRecord(row.id)"
+              class="example-element-row">
+            </mat-row>
+          </mat-table>
           <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
         </div>
       </div>

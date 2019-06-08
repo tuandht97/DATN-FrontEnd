@@ -56,8 +56,12 @@ export class ItemListComponent implements OnInit {
   removeItem(id) {
     this.itemService.delete(id).subscribe(
       result => {
-        this.toastr.success("Ngừng bán mã thành công")
-        this.router.navigate(['exchange']);
+        if (result["error"])
+          this.toastr.error("Ngừng bán mã không thành công");
+        else {
+          this.toastr.success("Ngừng bán mã thành công");
+          this.router.navigate(['exchange']);
+        }
       },
       err => {
         this.toastr.error("Ngừng bán mã không thành công")

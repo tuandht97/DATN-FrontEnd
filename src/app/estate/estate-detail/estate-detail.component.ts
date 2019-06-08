@@ -64,11 +64,14 @@ export class EstateDetailComponent implements OnInit {
       .pipe(first())
       .subscribe(
         result => {
-          this.toastr.success("Xác nhận thành công");
-          setTimeout(() => {
-            this.router.navigate(['stock'])
-          }, 2000)
-          // // this.router.navigate(['stock'])
+          if (result["error"])
+            this.toastr.error("Xác nhận không thành công");
+          else {
+            this.toastr.success("Xác nhận thành công");
+            setTimeout(() => {
+              this.router.navigate(['stock'])
+            }, 2000)
+          }
         },
         err => {
           this.toastr.error("Xác nhận và tạo mã không thành công")

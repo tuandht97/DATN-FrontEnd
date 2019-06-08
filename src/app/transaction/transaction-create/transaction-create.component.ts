@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { map, switchMap, first } from 'rxjs/operators';
+import { map, switchMap, first, ignoreElements } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 import { Item } from '../../_models/item';
@@ -81,8 +81,12 @@ export class TransactionCreateComponent implements OnInit {
       .pipe(first())
       .subscribe(
         result => {
-          this.toastr.success("Mua thành thành công"),
-            this.router.navigate(['user'])
+          if (result["error"])
+            this.toastr.error("Mua thành thành công");
+          else {
+            this.toastr.success("Mua thành thành công");
+            this.router.navigate(['user']);
+          }
         },
         err => {
           this.toastr.error("Mua không thành công")
