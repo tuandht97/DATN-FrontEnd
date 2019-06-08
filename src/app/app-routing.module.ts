@@ -4,9 +4,11 @@ import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { ExchangeComponent } from './exchange/exchange.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/exchange', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
   { path: 'exchange', component: ExchangeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

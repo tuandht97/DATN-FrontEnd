@@ -113,7 +113,8 @@ export class EstateCreateComponent implements OnInit {
 
   onKey(value: number) {
     this.sum = value;
-    this.pay = (value / 100000) / this.estateForm.value.amount;
+    this.pay = (value / 100000);
+    // this.pay = (value / 100000) / this.estateForm.value.amount;
     if (this.pay < 1)
       this.pay = 1;
   }

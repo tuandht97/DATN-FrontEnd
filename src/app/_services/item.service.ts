@@ -34,9 +34,9 @@ export class ItemService {
   getByUser(): Observable<any> {
     this.currentRole = this.auth.getCurrentUserRole;
     if (this.currentRole == Org.Seller)
-      return this.http.get<any>(`/api/realestate/list-advertising`);
+      return this.http.get<any>(`/api/realestate/list-advertising-by-user`);
     if (this.currentRole == Org.User)
-      return this.http.get<any>(`/api/trader/list-advertising`);
+      return this.http.get<any>(`/api/trader/list-advertising-by-user`);
   }
 
   getById(id: string): Observable<Item> {

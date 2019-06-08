@@ -26,6 +26,7 @@ import { JwtInterceptor } from './_auth/jwt.interceptor';
 
 import { SharedModule } from './_shared/shared.module';
 import { SpinnerModule } from './spinner/spinner.module';
+import { HomeComponent } from './home/home.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -40,6 +41,7 @@ export function tokenGetter() {
     ExchangeComponent,
     LoginComponent,
     RegisterComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

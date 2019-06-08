@@ -113,15 +113,15 @@ export class EstateUpdateComponent implements OnInit {
   get f() { return this.estateForm.controls; }
 
   onKey(value: number) {
-    this.pay = (value / 100000) / this.estateForm.value.amount;
+    this.pay = (value / 100000);
     if (this.pay < 1)
       this.pay = 1;
   }
 
   onAmount(value: number) {
-    this.pay = (this.estateForm.value.sumPrice / 10000) / value;
-    if (this.pay < 1)
-      this.pay = 1;
+    // this.pay = (this.estateForm.value.sumPrice / 10000) / value;
+    // if (this.pay < 1)
+    //   this.pay = 1;
   }
 
   setValueForm(estate: Estate, estateForm: FormGroup) {

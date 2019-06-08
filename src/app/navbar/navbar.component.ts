@@ -41,7 +41,7 @@ export class NavbarComponent implements OnInit, DoCheck {
 
   logout() {
     this.auth.logout().subscribe(result => {
-      this.router.navigate(['exchange'])
+      this.router.navigate(['home'])
     },
       err => { }
     );

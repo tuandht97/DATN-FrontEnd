@@ -7,6 +7,7 @@ import { AuthService } from '../../_services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { StockService } from '../../_services/stock.service';
 import { Org } from '../../_enum/org.enum';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-estate-detail',
@@ -20,6 +21,8 @@ export class EstateDetailComponent implements OnInit {
   public estate: Estate;
 
   submited: boolean = false;
+
+  baseUrl = environment.baseUrl;
 
   urls = [];
 
@@ -43,7 +46,7 @@ export class EstateDetailComponent implements OnInit {
       if (estate["result"]) {
         this.estate = estate["result"];
         this.estate.images.forEach(img => {
-          let url = 'http://35.247.165.184:8000/uploads/' + img
+          let url = this.baseUrl + '/uploads/' + img
           this.urls.push(url);
         });
         if (this.estate.actice == 'Publish')

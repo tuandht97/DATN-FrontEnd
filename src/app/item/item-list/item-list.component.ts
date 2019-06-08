@@ -40,16 +40,16 @@ export class ItemListComponent implements OnInit {
   }
 
   getData() {
-    // this.itemService.getByUser().subscribe(data => {
-    //   if (data.result)
-    //     this.dataSource = new MatTableDataSource(data.result);
-    //   else
-    //     this.dataSource = new MatTableDataSource();
-    //   this.dataSource.paginator = this.paginator;
-    //   this.dataSource.sort = this.sort;
-    // }, error => {
-    //   this.toastr.error("Lỗi tải dữ liệu");
-    // });
+    this.itemService.getByUser().subscribe(data => {
+      if (data.result)
+        this.dataSource = new MatTableDataSource(data.result);
+      else
+        this.dataSource = new MatTableDataSource();
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }, error => {
+      this.toastr.error("Lỗi tải dữ liệu");
+    });
     this.displayProgressSpinner = false;
   }
 

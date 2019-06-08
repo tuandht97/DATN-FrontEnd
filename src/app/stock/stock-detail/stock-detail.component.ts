@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/_services/auth.service';
 import { EstateService } from 'src/app/_services/estate.service';
 import { ToastrService } from 'ngx-toastr';
 import { Estate } from 'src/app/_models/estate';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-stock-detail',
@@ -22,6 +23,8 @@ export class StockDetailComponent implements OnInit {
   price: number;
 
   submited: boolean = false;
+
+  baseUrl = environment.baseUrl;
 
   urls = [];
 
@@ -48,7 +51,7 @@ export class StockDetailComponent implements OnInit {
         if (this.price < 1)
           this.price = 1;
         this.estate.images.forEach(img => {
-          let url = 'http://35.247.165.184:8000/uploads/' + img
+          let url = this.baseUrl + '/uploads/' + img
           this.urls.push(url);
         });
         if (this.estate.actice == 'Publish')

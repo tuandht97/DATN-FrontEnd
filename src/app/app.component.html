@@ -1,5 +1,5 @@
 <div class="container-scroller">
-  <app-navbar></app-navbar>
+  <app-navbar *ngIf="auth.loggedIn"></app-navbar>
   <div class="container-fluid page-body-wrapper">
     <app-sidebar *ngIf="auth.loggedIn"></app-sidebar>
     <div [ngClass]="{'main-panel': auth.loggedIn,'container': !auth.loggedIn}">
