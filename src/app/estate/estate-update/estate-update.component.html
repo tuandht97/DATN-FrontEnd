@@ -129,6 +129,12 @@
           </div>
           <h5 class="bg-primary text-white rounded">Hình ảnh</h5>
           <div class="row" id="gallery">
+              <div *ngFor="let index of listImages; index as i">
+                  <div id="contentInside">
+                    <div class="topright" (click)="removeOldImage(i)"><i class="fa fa-times close"></i></div>
+                    <img [src]="listImages[i]" id="anh">
+                  </div>
+                </div>
             <div *ngFor="let index of urls; index as i">
               <div id="contentInside">
                 <div class="topright" (click)="removeImage(i)"><i class="fa fa-times close"></i></div>

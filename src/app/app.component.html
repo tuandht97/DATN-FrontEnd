@@ -1,10 +1,9 @@
 <div class="container-scroller">
-  <app-navbar *ngIf="auth.loggedIn"></app-navbar>
-  <div class="container-fluid page-body-wrapper">
-    <app-sidebar *ngIf="auth.loggedIn"></app-sidebar>
-    <div [ngClass]="{'main-panel': auth.loggedIn,'container': !auth.loggedIn}">
-      <!-- <div class="main-panel" [ngClass]="{main-panel: a}"> -->
-      <div class="content-wrapper" style="min-height: 500px">
+  <app-navbar></app-navbar>
+  <div class=" page-body-wrapper">
+    <app-sidebar *ngIf="display == 1"></app-sidebar>
+    <div [ngClass]="{'main-panel': auth.loggedIn,'container': display == 0 || display == 2 }" style="width: 100%">
+      <div style="min-height: 600px; max-width: 2000px;">
         <router-outlet></router-outlet>
       </div>
       <app-footer></app-footer>

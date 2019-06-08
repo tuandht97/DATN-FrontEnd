@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { first, switchMap, map } from 'rxjs/operators';
 import { EstateService } from '../../_services/estate.service';
 import { Estate } from 'src/app/_models/estate';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-estate-update',
@@ -22,6 +23,10 @@ export class EstateUpdateComponent implements OnInit {
 
   loaded: Promise<boolean>;
 
+  baseUrl = environment.baseUrl;
+  listImages: string[] = [];
+  nameImages: string[] = [];
+
   constructor(
     private auth: AuthService,
     private estateService: EstateService,
@@ -37,7 +42,15 @@ export class EstateUpdateComponent implements OnInit {
       switchMap(id => this.estateService.getById(id))
     ).subscribe(estate => {
       this.estate = estate["result"];
-
+      console.log(this.estate.images)
+      this.estate.images.forEach(img => {
+        let url = this.baseUrl + '/uploads/' + img;
+        console.log(url)
+        this.nameImages.push(img);
+        this.listImages.push(url);
+      });
+      console.log(this.listImages)
+      console.log(this.nameImages)
       this.estateForm = this.formBuilder.group({
         name: ['', [Validators.required, Validators.maxLength(100)]],
         code: ['', [Validators.required, Validators.maxLength(10)]],
@@ -78,6 +91,12 @@ export class EstateUpdateComponent implements OnInit {
   removeImage(id: number) {
     this.urls.splice(id, 1);
     this.images.splice(id, 1);
+  }
+
+  removeOldImage(id: number) {
+    this.nameImages.splice(id, 1);
+    this.listImages.splice(id, 1);
+    console.log(this.nameImages);
   }
 
   public submit() {

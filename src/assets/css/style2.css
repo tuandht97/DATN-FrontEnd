@@ -341,10 +341,10 @@ ol {
 -----------------------*/
 
 .hero-section {
-	height: 900px;
-	padding-top: 260px;
+	height: 700px;
+	padding-top: 100px;
 	display: block;
-	background-image: url("../../images/hero-bg.png");
+	background-image: url("../images/hero-bg.png");
 	background-size: cover;
 	background-color: #f3f7f9;
 	background-position: right top;
@@ -451,6 +451,10 @@ ol {
 	margin-bottom: 15px;
 }
 
+.feature .feature-content p {
+	text-align: justify
+}
+
 .feature .readmore {
 	text-decoration: underline;
 	line-height: 1.2;
@@ -494,7 +498,7 @@ ol {
 	height: 56px;
 	top: -40px;
 	right: -40%;
-	background: url("../../images/process-line.png") no-repeat scroll 0 0/cover;
+	/* background: url("../images/process-line.png") no-repeat scroll 0 0/cover; */
 }
 
 /*---------------------

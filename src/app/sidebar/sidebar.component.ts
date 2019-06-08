@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { Org } from '../_enum/org.enum';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,7 +14,9 @@ export class SidebarComponent implements OnInit {
   currentUser: string;
 
   public samplePagesCollapsed = true;
-  constructor(private auth: AuthService) {
+  constructor(
+    private auth: AuthService
+  ) {
     this.currentUserRole = this.auth.getCurrentUserRole;
     switch (this.currentUserRole) {
       case Org.Admin:

@@ -43,6 +43,7 @@ export class EstateDetailComponent implements OnInit {
       map(params => params.get('id')),
       switchMap(id => this.estateService.getById(id))
     ).subscribe(estate => {
+      console.log(estate)
       if (estate["result"]) {
         this.estate = estate["result"];
         this.estate.images.forEach(img => {
