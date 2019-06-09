@@ -64,9 +64,7 @@ export class EstateListComponent implements OnInit {
 
   getAll() {
     this.estateService.getAll().subscribe(data => {
-      console.log(data)
       this.dataSource = new MatTableDataSource(data.result);
-      console.log(this.dataSource)
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.displayProgressSpinner = false;
@@ -78,9 +76,7 @@ export class EstateListComponent implements OnInit {
 
   getEstateUser() {
     this.estateService.getEstateUser().subscribe(data => {
-      console.log(data)
       this.dataSource = new MatTableDataSource(data.result);
-      console.log(this.dataSource)
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.displayProgressSpinner = false;

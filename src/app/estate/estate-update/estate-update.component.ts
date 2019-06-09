@@ -19,6 +19,8 @@ export class EstateUpdateComponent implements OnInit {
 
   pay: number;
 
+  sum: number;
+
   estate: Estate;
 
   loaded: Promise<boolean>;
@@ -42,15 +44,11 @@ export class EstateUpdateComponent implements OnInit {
       switchMap(id => this.estateService.getById(id))
     ).subscribe(estate => {
       this.estate = estate["result"];
-      console.log(this.estate.images)
       this.estate.images.forEach(img => {
         let url = this.baseUrl + '/uploads/' + img;
-        console.log(url)
         this.nameImages.push(img);
         this.listImages.push(url);
       });
-      console.log(this.listImages)
-      console.log(this.nameImages)
       this.estateForm = this.formBuilder.group({
         name: ['', [Validators.required, Validators.maxLength(100)]],
         code: ['', [Validators.required, Validators.maxLength(10)]],
@@ -63,7 +61,7 @@ export class EstateUpdateComponent implements OnInit {
         description: [null, Validators.required]
       });
       this.setValueForm(this.estate, this.estateForm)
-
+      this.sum = this.estate.price * 100000;
       this.loaded = Promise.resolve(true);
     });
   }
@@ -96,7 +94,6 @@ export class EstateUpdateComponent implements OnInit {
   removeOldImage(id: number) {
     this.nameImages.splice(id, 1);
     this.listImages.splice(id, 1);
-    console.log(this.nameImages);
   }
 
   public submit() {
@@ -112,6 +109,9 @@ export class EstateUpdateComponent implements OnInit {
     formData.append('amount', this.estateForm.value.amount);
     formData.append('description', this.estateForm.value.description);
 
+    for (var i = 0; i < this.nameImages.length; i++) {
+      formData.append("oldImages", this.nameImages[i]);
+    }
     for (var i = 0; i < this.images.length; i++) {
       formData.append("images", this.images[i]);
     }
@@ -136,6 +136,7 @@ export class EstateUpdateComponent implements OnInit {
   get f() { return this.estateForm.controls; }
 
   onKey(value: number) {
+    this.sum = value;
     this.pay = Math.ceil(value / 100000);
     if (this.pay < 1)
       this.pay = 1;
@@ -150,7 +151,7 @@ export class EstateUpdateComponent implements OnInit {
   setValueForm(estate: Estate, estateForm: FormGroup) {
     estateForm['controls']['name'].setValue(estate.name);
     estateForm['controls']['code'].setValue(estate.id);
-    estateForm['controls']['sumPrice'].setValue(estate.price * estate.amount);
+    estateForm['controls']['sumPrice'].setValue(estate.price * 100000);
     estateForm['controls']['amount'].setValue(estate.amount);
     estateForm['controls']['address'].setValue(estate.address);
     estateForm['controls']['squareMeter'].setValue(estate.squareMeter);
