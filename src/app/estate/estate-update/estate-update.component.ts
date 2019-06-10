@@ -50,13 +50,12 @@ export class EstateUpdateComponent implements OnInit {
         this.listImages.push(url);
       });
       this.estateForm = this.formBuilder.group({
-        name: ['', [Validators.required, Validators.maxLength(100)]],
-        code: ['', [Validators.required, Validators.maxLength(10)]],
+        name: ['', [Validators.required, Validators.maxLength(100), this.checkChar]],
+        code: ['', [Validators.required, Validators.maxLength(10), this.checkChar]],
         amount: [1, [Validators.required, Validators.min(1)]],
         sumPrice: ['', [Validators.required, Validators.min(10000)]],
         price: [1, Validators.required],
-        typeEstate: ['', Validators.required],
-        address: ['', [Validators.required, Validators.maxLength(200)]],
+        address: ['', [Validators.required, Validators.maxLength(200), this.checkChar]],
         squareMeter: ['', [Validators.required, Validators.min(0)]],
         description: [null, Validators.required]
       });
@@ -157,5 +156,14 @@ export class EstateUpdateComponent implements OnInit {
     estateForm['controls']['squareMeter'].setValue(estate.squareMeter);
     estateForm['controls']['description'].setValue(estate.description);
     this.pay = estate.price;
+  }
+
+  checkChar(control) {
+    let value = control.value
+    let check = /^[A-Za-z0-9 ]+$/;
+    if (check.test(value) && value) {
+      return null;
+    } else
+      return { 'char': true }
   }
 }

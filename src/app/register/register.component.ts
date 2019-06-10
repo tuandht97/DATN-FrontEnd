@@ -33,9 +33,9 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      username: ['', [Validators.required, this.checkChar]],
+      firstName: ['', [Validators.required, this.checkChar]],
+      lastName: ['', [Validators.required, this.checkChar]],
       org: ['', Validators.required],
       identityCard: ['', [Validators.required, this.checkCard]]
     });
@@ -90,5 +90,14 @@ export class RegisterComponent implements OnInit {
       } else
         return { 'cmt': true }
     return null;
+  }
+
+  checkChar(control) {
+    let value = control.value
+    let check = /^[A-Za-z0-9 ]+$/;
+    if (check.test(value) && value) {
+      return null;
+    } else
+      return { 'char': true }
   }
 }

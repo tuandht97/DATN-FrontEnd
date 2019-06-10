@@ -34,14 +34,14 @@ export class EstateCreateComponent implements OnInit {
 
   ngOnInit() {
     this.estateForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.maxLength(100)]],
-      code: ['', [Validators.required, Validators.maxLength(10)]],
+      name: ['', [Validators.required, Validators.maxLength(100), this.checkChar]],
+      code: ['', [Validators.required, Validators.maxLength(10), this.checkChar]],
       amount: [1, [Validators.required, Validators.min(1)]],
       sumPrice: ['', [Validators.required, Validators.min(10000)]],
       price: [1, Validators.required],
-      address: ['', [Validators.required, Validators.maxLength(200)]],
+      address: ['', [Validators.required, Validators.maxLength(200), this.checkChar]],
       squareMeter: ['', [Validators.required, Validators.min(0)]],
-      description: ['']
+      description: ['', Validators.required]
     });
   }
 
@@ -77,7 +77,7 @@ export class EstateCreateComponent implements OnInit {
     }
 
     this.estateForm['controls']['price'].setValue(this.pay);
-
+    console.log(this.estateForm.value.code)
     const formData = new FormData();
 
     formData.append('id', this.estateForm.value.code);
@@ -87,7 +87,7 @@ export class EstateCreateComponent implements OnInit {
     formData.append('address', this.estateForm.value.address);
     formData.append('amount', this.estateForm.value.amount);
     formData.append('description', this.estateForm.value.description);
-
+    console.log(formData)
     for (var i = 0; i < this.images.length; i++) {
       formData.append("images", this.images[i]);
     }
@@ -123,5 +123,14 @@ export class EstateCreateComponent implements OnInit {
     // this.pay = (this.estateForm.value.sumPrice / 100000) / value;
     // if (this.pay < 1)
     //   this.pay = 1;
+  }
+
+  checkChar(control) {
+    let value = control.value
+    let check = /^[A-Za-z0-9 ]+$/;
+    if (check.test(value) && value) {
+      return null;
+    } else
+      return { 'char': true }
   }
 }
