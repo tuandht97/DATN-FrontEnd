@@ -17,7 +17,7 @@
                     </div>
                     <div *ngIf="f.name.errors.maxLength">Tên bất động sản dài không quá 100 kí tự
                     </div>
-                    <div *ngIf="f.name.errors.char">Tên bất động sản không chứa các kí tự đặc biệt
+                    <div *ngIf="f.name.errors.char">Tên bất động sản không chứa các kí tự đặc biệt (&lt;, &gt;, &quot;, &apos;, vv)
                     </div>
                   </div>
                 </div>
@@ -35,7 +35,7 @@
                     <div *ngIf="f.code.errors.required">Bạn chưa mã
                     </div>
                     <div *ngIf="f.code.errors.maxLength">Mã dài không quá 10 kí tự</div>
-                    <div *ngIf="f.code.errors.char">Mã không chứa các kí tự đặc biệt</div>
+                    <div *ngIf="f.code.errors.code">Mã chứng chỉ quỹ là các chữ cái viết hoa</div>
                   </div>
                 </div>
               </div>
@@ -125,7 +125,7 @@
                     </div>
                     <div *ngIf="f.address.errors.maxLength">Địa chỉ bất động sản dài không quá 200 kí tự
                     </div>
-                    <div *ngIf="f.address.errors.char">Địa chỉ bất động sản không chứa các kí tự đặc biệt
+                    <div *ngIf="f.address.errors.char">Địa chỉ bất động sản không chứa các kí tự đặc biệt (&lt;, &gt;, &quot;, &apos;, vv)
                     </div>
                   </div>
                 </div>

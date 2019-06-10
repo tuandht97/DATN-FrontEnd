@@ -15,7 +15,7 @@
               <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                 <div *ngIf="f.username.errors.required">Bạn chưa nhập tài khoản
                 </div>
-                <div *ngIf="f.username.errors.char">Tài khoản không chứa các kí tự đặc biệt
+                <div *ngIf="f.username.errors.acc">Tài khoản chỉ gồm các chữ cái và chữ số
                 </div>
               </div>
             </div>
@@ -28,7 +28,7 @@
               <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
                 <div *ngIf="f.firstName.errors.required">Bạn chưa nhập first name
                 </div>
-                <div *ngIf="f.firstName.errors.char">First name không chứa các kí tự đặc biệt
+                <div *ngIf="f.firstName.errors.char">First name không chứa các kí tự đặc biệt (., ,, -, /, &lt;, &gt;, &quot;, &apos;, vv)
                 </div>
               </div>
             </div>
@@ -41,7 +41,7 @@
               <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
                 <div *ngIf="f.lastName.errors.required">Bạn chưa nhập last name
                 </div>
-                <div *ngIf="f.lastName.errors.char">Last name không chứa các kí tự đặc biệt
+                <div *ngIf="f.lastName.errors.char">Last name không chứa các kí tự đặc biệt (., ,, -, /, &lt;, &gt;, &quot;, &apos;, vv)
                 </div>
               </div>
             </div>

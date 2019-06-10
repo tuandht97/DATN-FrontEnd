@@ -51,7 +51,7 @@ export class EstateUpdateComponent implements OnInit {
       });
       this.estateForm = this.formBuilder.group({
         name: ['', [Validators.required, Validators.maxLength(100), this.checkChar]],
-        code: ['', [Validators.required, Validators.maxLength(10), this.checkChar]],
+        code: ['', [Validators.required, Validators.maxLength(10), this.checkCode]],
         amount: [1, [Validators.required, Validators.min(1)]],
         sumPrice: ['', [Validators.required, Validators.min(10000)]],
         price: [1, Validators.required],
@@ -160,7 +160,16 @@ export class EstateUpdateComponent implements OnInit {
 
   checkChar(control) {
     let value = control.value
-    let check = /^[A-Za-z0-9 ]+$/;
+    let check = /^[A-Za-z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ,./\- ]+$/;
+    if (check.test(value) && value) {
+      return null;
+    } else
+      return { 'char': true }
+  }
+
+  checkCode(control) {
+    let value = control.value
+    let check = /^[A-Z]+$/;
     if (check.test(value) && value) {
       return null;
     } else

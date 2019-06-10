@@ -30,7 +30,7 @@ export class UserCreateComponent implements OnInit {
     if (this.auth.getCurrentUser !== 'admin')
       this.router.navigate(['user/list']);
     this.registerForm = this.formBuilder.group({
-      username: ['', [Validators.required, this.checkChar]],
+      username: ['', [Validators.required, this.checkAcc]],
       firstName: ['', [Validators.required, this.checkChar]],
       lastName: ['', [Validators.required, this.checkChar]],
       org: ['Regulator'],
@@ -93,9 +93,18 @@ export class UserCreateComponent implements OnInit {
     return null;
   }
 
-  checkChar(control) {
+  checkAcc(control) {
     let value = control.value
     let check = /^[A-Za-z0-9 ]+$/;
+    if (check.test(value) && value) {
+      return null;
+    } else
+      return { 'acc': true }
+  }
+
+  checkChar(control) {
+    let value = control.value
+    let check = /^[A-Za-z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ,./\- ]+$/;
     if (check.test(value) && value) {
       return null;
     } else
