@@ -51,7 +51,7 @@ export class EstateUpdateComponent implements OnInit {
       });
       this.estateForm = this.formBuilder.group({
         name: ['', [Validators.required, Validators.maxLength(100), this.checkChar]],
-        code: ['', [Validators.required, Validators.maxLength(10), this.checkCode]],
+        code: [''],
         amount: [1, [Validators.required, Validators.min(1)]],
         sumPrice: ['', [Validators.required, Validators.min(10000)]],
         price: [1, Validators.required],

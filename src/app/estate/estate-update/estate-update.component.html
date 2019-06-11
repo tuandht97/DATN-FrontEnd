@@ -30,7 +30,7 @@
                 <label>Mã</label>
                 <div>
                   <input type="text" formControlName="code" class="form-control"
-                    [ngClass]="{ 'is-invalid': submitted && f.code.errors }" placeholder="Mã muốn tạo" min="10" />
+                    [ngClass]="{ 'is-invalid': submitted && f.code.errors }" placeholder="Mã muốn tạo" min="10" disabled />
                   <div *ngIf="submitted && f.code.errors" class="invalid-feedback">
                     <div *ngIf="f.code.errors.required">Bạn chưa mã
                     </div>
