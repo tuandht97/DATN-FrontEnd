@@ -27,7 +27,7 @@ export class UserCreateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.auth.getCurrentUser !== 'admin')
+    if (this.auth.getCurrentUser !== 'Admin@regulator-peer')
       this.router.navigate(['user/list']);
     this.registerForm = this.formBuilder.group({
       username: ['', [Validators.required, this.checkAcc]],
@@ -66,6 +66,7 @@ export class UserCreateComponent implements OnInit {
           }
         },
         err => {
+          this.displayProgressSpinner = false;
           this.toastr.error("Tạo tài khoản không thành công")
         }
       );

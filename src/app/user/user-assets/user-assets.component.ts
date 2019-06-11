@@ -38,7 +38,6 @@ export class UserAssetsComponent implements OnInit {
     this.currentUser = this.auth.getCurrentUser;
     this.displayProgressSpinner = true;
     this.getData();
-    this.displayProgressSpinner = false;
   }
 
   ngOnInit() {
@@ -68,6 +67,7 @@ export class UserAssetsComponent implements OnInit {
     }, error => {
       this.toastr.error("Lỗi tải dữ liệu");
     });
+    this.displayProgressSpinner = false;
   }
 
   get isUser() {

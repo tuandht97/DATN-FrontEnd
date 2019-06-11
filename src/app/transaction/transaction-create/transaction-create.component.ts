@@ -62,7 +62,10 @@ export class TransactionCreateComponent implements OnInit {
   public submit() {
     this.submitted = true;
 
+    console.log(this.tranForm)
+
     if (this.tranForm.invalid) {
+      console.log("CC")
       return;
     }
 
@@ -77,15 +80,20 @@ export class TransactionCreateComponent implements OnInit {
       return;
     }
 
+    console.log(this.tranForm)
+
     this.tranService.create(this.item.uuid, this.tranForm.value.amount)
       .pipe(first())
       .subscribe(
         result => {
+          console.log(result)
           if (result["error"])
             this.toastr.error("Mua thành thành công");
           else {
             this.toastr.success("Mua thành thành công");
-            this.router.navigate(['user']);
+            setTimeout(() => {
+              this.router.navigate(['user'])
+            }, 2000)
           }
         },
         err => {

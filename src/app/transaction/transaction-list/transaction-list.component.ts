@@ -40,7 +40,6 @@ export class TransactionListComponent implements OnInit {
     this.displayProgressSpinner = true;
     this.getDataSell();
     this.getDataBuy();
-    this.displayProgressSpinner = false;
   }
 
   ngOnInit() {
@@ -69,6 +68,7 @@ export class TransactionListComponent implements OnInit {
     }, error => {
       this.toastr.error("Lỗi tải dữ liệu");
     });
+    this.displayProgressSpinner = false;
   }
 
   getDataSell() {

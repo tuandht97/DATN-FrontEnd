@@ -77,7 +77,6 @@ export class EstateCreateComponent implements OnInit {
     }
 
     this.estateForm['controls']['price'].setValue(this.pay);
-    console.log(this.estateForm.value.code)
     const formData = new FormData();
 
     formData.append('id', this.estateForm.value.code);
@@ -87,7 +86,7 @@ export class EstateCreateComponent implements OnInit {
     formData.append('address', this.estateForm.value.address);
     formData.append('amount', this.estateForm.value.amount);
     formData.append('description', this.estateForm.value.description);
-    console.log(formData)
+
     for (var i = 0; i < this.images.length; i++) {
       formData.append("images", this.images[i]);
     }

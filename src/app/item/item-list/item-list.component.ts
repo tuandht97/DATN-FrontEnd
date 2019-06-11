@@ -26,11 +26,13 @@ export class ItemListComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService
   ) {
-    this.displayProgressSpinner = true;
-    this.getData();
+    // this.displayProgressSpinner = true;
+    // this.getData();
   }
 
   ngOnInit() {
+    this.displayProgressSpinner = true;
+    this.getData();
   }
 
   applyFilter(filterValue: string) {
@@ -60,7 +62,9 @@ export class ItemListComponent implements OnInit {
           this.toastr.error("Ngừng bán mã không thành công");
         else {
           this.toastr.success("Ngừng bán mã thành công");
-          this.router.navigate(['exchange']);
+          setTimeout(() => {
+            this.router.navigate(['exchange'])
+          }, 2000)
         }
       },
       err => {

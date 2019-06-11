@@ -28,7 +28,7 @@ export class ItemService {
   // }
 
   getAll(): Observable<any> {
-      return this.http.get<any>(`/api/auth/exchange`);
+    return this.http.get<any>(`/api/auth/exchange`);
   }
 
   getByUser(): Observable<any> {
@@ -44,11 +44,19 @@ export class ItemService {
   }
 
   create(item: Item) {
-    return this.http.post(`/api/realestate/create-advertising`, item);
+    this.currentRole = this.auth.getCurrentUserRole;
+    if (this.currentRole == Org.Seller)
+      return this.http.post(`/api/realestate/create-advertising`, item);
+    if (this.currentRole == Org.User)
+      return this.http.post(`/api/trader/create-advertising`, item);
   }
 
   delete(id: string) {
-    return this.http.post(`/api/realestate/delete-advertising`, { id });
+    this.currentRole = this.auth.getCurrentUserRole;
+    if (this.currentRole == Org.Seller)
+      return this.http.post(`/api/realestate/delete-advertising`, { id });
+    if (this.currentRole == Org.User)
+      return this.http.post(`/api/trader/delete-advertising`, { id });
   }
 
   public get getCurrentItem(): any {

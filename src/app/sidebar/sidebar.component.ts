@@ -43,7 +43,7 @@ export class SidebarComponent implements OnInit {
   }
 
   get isCreater() {
-    return this.currentUserRole === Org.Admin && this.currentUser === 'admin';
+    return this.currentUserRole === Org.Admin && this.currentUser === 'Admin@regulator-peer';
   }
 
   get isSeller() {

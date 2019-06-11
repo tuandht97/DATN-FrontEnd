@@ -65,19 +65,21 @@ export class ItemCreateComponent implements OnInit {
     this.currentUser = this.auth.getCurrentUser;
     this.displayProgressSpinner = true;
     this.userService.getAsset(this.currentUser).subscribe(data => {
-      this.displayProgressSpinner = false;
+      console.log(data)
       if (data["result"]) {
         for (let code in data["result"]["tritList"]) {
           let a = { code: code, amount: data["result"]["tritList"][code] };
           this.assets.push(a);
+          this.code.push(a.code);
         }
-        this.code = data["result"]["publishedTrits"];
+        // this.code = data["result"]["publishedTrits"];
       } else {
         this.toastr.error("Bạn chưa có mã nào trong tài sản")
       }
+      this.displayProgressSpinner = false;
     }, error => {
       this.displayProgressSpinner = false;
-      this.toastr.error("Lỗi tải dữ liệu")
+      this.toastr.error("Lỗi tải dữ liệu");
     });
 
     this.itemForm = this.formBuilder.group({
@@ -99,7 +101,10 @@ export class ItemCreateComponent implements OnInit {
   public submit() {
     this.submitted = true;
 
+    console.log(this.itemForm)
+
     if (this.itemForm.invalid) {
+      console.log("CC")
       return;
     }
 
@@ -121,11 +126,14 @@ export class ItemCreateComponent implements OnInit {
       .pipe(first())
       .subscribe(
         result => {
+          console.log(result)
           if (result["error"])
             this.toastr.error("Giao bán mã không thành công");
           else {
             this.toastr.success("Giao bán mã thành công");
-            //        this.router.navigate(['item'])
+            setTimeout(() => {
+              this.router.navigate(['item'])
+            }, 2000)
           }
         },
         err => {
@@ -138,6 +146,7 @@ export class ItemCreateComponent implements OnInit {
 
   public sellAll() {
     this.amount = this.amountCodeCurrent;
+    this.itemForm['controls']['amount'].setValue(this.amountCodeCurrent);
   }
 
   private _filter(value: string): string[] {

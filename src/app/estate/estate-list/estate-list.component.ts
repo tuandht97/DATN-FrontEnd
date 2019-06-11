@@ -67,11 +67,10 @@ export class EstateListComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data.result);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      this.displayProgressSpinner = false;
     }, error => {
-      this.displayProgressSpinner = false;
       this.toastr.error("Lỗi tải dữ liệu")
     })
+    this.displayProgressSpinner = false;
   }
 
   getEstateUser() {
@@ -79,11 +78,10 @@ export class EstateListComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data.result);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      this.displayProgressSpinner = false;
     }, error => {
-      this.displayProgressSpinner = false;
       this.toastr.error("Lỗi tải dữ liệu")
     });
+    this.displayProgressSpinner = false;
   }
 
   get isAdmin() {

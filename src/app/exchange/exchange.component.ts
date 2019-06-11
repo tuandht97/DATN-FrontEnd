@@ -5,6 +5,7 @@ import { Item } from '../_models/item';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../_services/auth.service';
 import { Org } from '../_enum/org.enum';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-exchange',
@@ -22,6 +23,8 @@ export class ExchangeComponent implements OnInit {
 
   buyItem: any;
 
+  displayProgressSpinner: boolean;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -31,12 +34,14 @@ export class ExchangeComponent implements OnInit {
     public itemService: ItemService,
     private route: ActivatedRoute,
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private toastr: ToastrService
   ) {
     this.currentUserRole = this.auth.getCurrentUserRole;
     this.currentUser = this.auth.getCurrentUser;
     if (this.isUser)
       this.displayedColumns.push('buy')
+    this.displayProgressSpinner = true;
     this.getData();
   }
 
@@ -65,7 +70,9 @@ export class ExchangeComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }, error => {
+      this.toastr.error("Lỗi tải dữ liệu");
     });
+    this.displayProgressSpinner = false;
   }
 
   get isUser() {
@@ -79,6 +86,6 @@ export class ExchangeComponent implements OnInit {
   }
 
   getRecord(value: any) {
-    this.router.navigate(['stock/' + value])
+    // this.router.navigate(['stock/' + value])
   }
 }

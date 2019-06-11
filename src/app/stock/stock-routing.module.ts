@@ -19,11 +19,11 @@ const router: Routes = [
                 canActivate: [AuthGuard],
                 data: { roles: Org.Admin }
             },
-            {
-                path: ':id',
-                component: StockDetailComponent,
-                // canActivate: [AuthGuard],
-            }
+            // {
+            //     path: ':id',
+            //     component: StockDetailComponent,
+            //     // canActivate: [AuthGuard],
+            // }
         ]
     }
 ];

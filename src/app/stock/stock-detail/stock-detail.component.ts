@@ -57,7 +57,7 @@ export class StockDetailComponent implements OnInit {
         if (this.estate.actice == 'Publish')
           this.submited = true;
       } else {
-        this.toastr.error("Mã không tồn tại");
+        this.toastr.error("Quảng cáo không tồn tại");
         this.router.navigate(['exchange']);
       }
     });
